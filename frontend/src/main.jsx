@@ -8,12 +8,15 @@ import Profile from './pages/Profile.jsx'
 import Contact from './pages/Contact.jsx'
 import Help from './pages/Help.jsx'
 import Crop from './pages/Crop.jsx'
+import Login from './pages/Login.jsx'
 
 
 const router = createBrowserRouter (
   createRoutesFromElements(
     <>
-      <Route path='/' element={ <App /> } >
+      <Route path='/' element={ <Login /> } />
+
+      <Route path='/app' element={ <App /> } >
         <Route path='' element={ <Body /> } />
         <Route path='profile' element={ <Profile /> } />
         <Route path='contact' element={ <Contact /> } />
