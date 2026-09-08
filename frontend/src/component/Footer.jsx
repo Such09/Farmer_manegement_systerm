@@ -2,7 +2,7 @@ import { FaYoutube } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaFacebook } from "react-icons/fa";
-import { Copyright } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import logo_2 from '../accets/logo_2.png'
 
 const Footer = () => {
@@ -19,13 +19,14 @@ const Footer = () => {
         <div className='w-full flex flex-col items-center gap-4 md:gap-7 md:items-start md:flex-row'>
           <div className='py-2 flex flex-col gap-2'>
             <h1 className='font-bold'>Useful Links</h1>
-            <a href="#">Agmarknet (Mandi Rates)</a>
-            <a href="#">National Agriculture Market</a>
-            <a href="#">India Meteorological Department</a>
-            <a href="#">Pradhan Mantri Fasal Bima Yojana</a>
-            <a href="#">PM KISAN SAMMAN NIDHI</a>
-            <a href="#">Agri Stack</a>
-            <a href="#">Soil Health Card</a>
+             
+            <Link to={`https://agmarknet.gov.in/home`}>Agmarknet (Mandi Rates)</Link>
+            <Link to={`https://mausam.imd.gov.in/`} >India Meteorological Department</Link>
+            <Link to={`https://enam.gov.in/`} >National Agriculture Market</Link>
+            <Link to={`https://pmfby.gov.in/`} >Pradhan Mantri Fasal Bima Yojana</Link>
+            <Link to={`https://pmkisan.gov.in/`} >PM KISAN SAMMAN NIDHI</Link>
+            <Link to={`https://agristack.gov.in/#/`} >Agri Stack</Link>
+            <Link to={`https://soilhealth.dac.gov.in/home`} >Soil Health Card</Link>
           </div>
 
           <div className="hidden md:flex h-72 border-gray-400 border"></div>
@@ -34,7 +35,7 @@ const Footer = () => {
             <h1 className="font-bold">Contact with us</h1>
             <div className='flex gap-2'>
               <FaYoutube />
-              <FaInstagram />
+              <Link to={`https://www.instagram.com/x_sachya_____09/?hl=en`}><FaInstagram /></Link>
               <FaXTwitter />
               <FaFacebook />
             </div>
