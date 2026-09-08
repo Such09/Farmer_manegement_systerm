@@ -35,13 +35,13 @@ const Navbar = () => {
                         </button>
                     </div>
 
-                    <Link to={`/profile`} className='font-medium text-white text-lg'>Profile</Link>
+                    <Link to={`/app/profile`} className='font-medium text-white text-lg'>Profile</Link>
 
-                    <Link to={`/crop`} className='font-medium text-white text-lg'>Crop's</Link>
+                    <Link to={`/app/crop`} className='font-medium text-white text-lg'>Crop's</Link>
 
-                    <Link to={`/contact`} className='font-medium text-white text-lg'>Contact</Link>
+                    <Link to={`/app/contact`} className='font-medium text-white text-lg'>Contact</Link>
 
-                    <Link to={`/help`} className='font-medium text-white text-lg'>Help</Link>
+                    <Link to={`/app/help`} className='font-medium text-white text-lg'>Help</Link>
 
                 </div>
             </div>
