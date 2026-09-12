@@ -1,6 +1,45 @@
-import React from 'react'
+import axios from 'axios';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const Profile = () => {
+  const navigate = useNavigate();
+  const [data, setData] = useState({});
+
+  // profile
+  const profile = async () => {
+    try {
+      const res = await axios.get(`http://localhost:3000/farmer/profile`, { withCredentials: true })
+      setData(res.data.user)
+
+    } catch (error) {
+      console.log("profile error: ", error.status)
+      if (error.status == 401)
+        navigate(`/`)
+
+    }
+  }
+
+  useEffect(() => {
+    profile()
+  },[])
+
+  // Logout a User
+  const logout = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3000/farmer/logout`, { withCredentials: true });
+
+      console.log('logout res: ', response);
+
+      if (response.status == 200)
+        navigate(`/`);
+
+    } catch (error) {
+      console.log("Logout error is: ", error);
+    }
+  }
+
   return (
     <div className='min-h-screen w-full flex justify-center gap-5 bg-zinc-100'>
       {/* Side Bar */}
@@ -10,11 +49,11 @@ const Profile = () => {
         {/* Profile photo */}
         <div className='pl-2 flex flex-col gap-3'>
           <div className='h-16 w-16 pt-3 rounded-full'>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNqeBSDf38TR-AtFT6xRtdAtDCG5wHaay0I1uvE9QuaQ&s=10" alt=""
+            <img src={data.avatar} alt=""
               className='h-full w-full rounded-full object-cover' />
           </div>
 
-          <h1 className='text-lg font-medium'>Sachin Gadhave</h1>
+          <h1 className='text-lg font-medium'> {data.name} </h1>
         </div>
 
         <div className='my-2 w-full border border-gray-400'> </div>
@@ -22,7 +61,12 @@ const Profile = () => {
         <div className='pl-2 flex flex-col gap-2'>
           <a href="#" className='py-1 font-medium hover:bg-gray-100'>Persnal details</a>
           <a href="#" className='py-1 font-medium hover:bg-gray-100'>Crop's</a>
-          <a href="#" className='py-1 font-medium hover:bg-gray-100'>Logout</a>
+
+          {/* Logout */}
+          <p onClick={() => logout()}
+            className='py-1 font-medium cursor-pointer hover:bg-gray-100'>
+            Logout
+          </p>
         </div>
 
       </div>

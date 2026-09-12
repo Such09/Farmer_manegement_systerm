@@ -1,13 +1,12 @@
 import { useState } from 'react'
 import { User, Search } from 'lucide-react'
 import logo from '../accets/logo.png'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Navbar = () => {
+    const navigate = useNavigate();
     const [isProfileClick, setIsProfileClick] = useState(false);
-
-    console.log(isProfileClick);
-
 
     return (
         <div className='w-full flex justify-between items-center relative'>
@@ -35,7 +34,8 @@ const Navbar = () => {
                         </button>
                     </div>
 
-                    <Link to={`/app/profile`} className='font-medium text-white text-lg'>Profile</Link>
+                    <Link to={`/app/profile`}
+                    className='font-medium text-white text-lg'>Profile</Link>
 
                     <Link to={`/app/crop`} className='font-medium text-white text-lg'>Crop's</Link>
 
@@ -51,16 +51,16 @@ const Navbar = () => {
                 isProfileClick
                     ?
                     <div className='w-full h-fit mt-56 px-2 flex flex-col gap-2 bg-white absolute'>
-                        <Link to={`/profile`} onClick={() => setIsProfileClick(!isProfileClick)} 
+                        <Link to={`/app/profile`} onClick={() => setIsProfileClick(!isProfileClick)} 
                         className='font-medium py-1 hover:bg-gray-50'>Profile</Link>
 
-                        <Link to={`/crop`} onClick={() => setIsProfileClick(!isProfileClick)} 
+                        <Link to={`/app/crop`} onClick={() => setIsProfileClick(!isProfileClick)} 
                         className='font-medium py-1 hover:bg-gray-50'>Crop</Link>
 
-                        <Link to={`/contact`} onClick={() => setIsProfileClick(!isProfileClick)} 
+                        <Link to={`/app/contact`} onClick={() => setIsProfileClick(!isProfileClick)} 
                         className='font-medium py-1 hover:bg-gray-50'>Contact</Link>
 
-                        <Link to={`/help`} onClick={() => setIsProfileClick(!isProfileClick)} 
+                        <Link to={`/app/help`} onClick={() => setIsProfileClick(!isProfileClick)} 
                         className='font-medium py-1 hover:bg-gray-50'>Help</Link>
                     </div>
 
