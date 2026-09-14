@@ -10,6 +10,7 @@ import Help from './pages/Help.jsx'
 import Crop from './pages/Crop.jsx'
 import Login from './pages/Login.jsx'
 import Search from './pages/Search.jsx'
+import ScanCrop from './pages/ScanCrop.jsx'
 
 
 const router = createBrowserRouter (
@@ -24,6 +25,7 @@ const router = createBrowserRouter (
         <Route path='help' element={ <Help /> } />
         <Route path='crop' element={ <Crop /> } />
         <Route path='search' element={ <Search /> } />
+        <Route path='scan' element={ <ScanCrop /> } />
       </Route>
     </>
   )

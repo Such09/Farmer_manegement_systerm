@@ -1,6 +1,9 @@
+import { useNavigate } from 'react-router-dom'
 import hero from '../accets/hero.png'
 
 const Body = () => {
+    const navigate = useNavigate()
+
     return (
         <div className='min-h-screen w-full flex flex-col bg-zinc-100'>
             {/* Hero Section */}
@@ -12,6 +15,19 @@ const Body = () => {
             <div className='w-full h-full flex justify-center gap-7'>
                 {/* Main section */}
                 <div className='h-full w-full px-9 py-4 md:w-2/3 flex flex-col gap-6 bg-white'>
+                    {/* Scan crops photos */}
+                    <div className='flex flex-col gap-1'>
+                        <h1 className='text-lg md:text-2xl font-bold'>Scan Your Crop Photo 🌱</h1>
+                        <p className='font-sans text-lg'>Scan your crop photo to identify possible diseases, pests, and visible health problems.
+                            Get useful information and recommendations to help keep your crops healthy.
+                        </p>
+
+                        <button onClick={() => navigate(`/app/scan`)}
+                        className='h-12 w-1/4 rounded bg-green-400 text-white text-lg font-medium active:scale-95'>
+                            Scan crops
+                        </button>
+                    </div>
+
                     <div className='flex flex-col gap-1'>
                         <h1 className='text-lg md:text-2xl font-bold'>What is AgriConnect?</h1>
                         <p className='font-sans text-lg'>Think of AgriStack as a digital system that brings all the important farming-related information into one place.
@@ -69,29 +85,29 @@ const Body = () => {
                 {/* AD section */}
                 <div className='hidden w-1/4 h-fit py-4 bg-white md:flex flex-col gap-7'>
                     <div className='w-full h-fit px-6 flex flex-col'>
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSynvtargszBv4DHowMVmlwbDfWW-3Cs81LNVzFe5_-Q&s" alt="" 
-                        className='h-48 w-full object-contain'/>
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSynvtargszBv4DHowMVmlwbDfWW-3Cs81LNVzFe5_-Q&s" alt=""
+                            className='h-48 w-full object-contain' />
 
                         <p className='font-medium'>BT Cotton Special Liquid Fertilizer for Cotton Crop 2L</p>
                     </div>
 
                     <div className='w-full h-fit px-6 flex flex-col'>
-                        <img src="https://casadeamor.in/cdn/shop/products/cottonseedcakefertilizer-5.jpg?v=1650367686&width=1445" alt="" 
-                        className='h-48 w-full object-contain'/>
+                        <img src="https://casadeamor.in/cdn/shop/products/cottonseedcakefertilizer-5.jpg?v=1650367686&width=1445" alt=""
+                            className='h-48 w-full object-contain' />
 
                         <p className='font-medium'>Casa De Amor Cottonseed Cake Organic Fertilizer (Kapasya khal)</p>
                     </div>
 
                     <div className='w-full h-fit px-6 flex flex-col'>
-                        <img src="https://agribegri.com/_next/image?url=https%3A%2F%2Fdujjhct8zer0r.cloudfront.net%2Fmedia%2Fprod_image%2F15151901621751288444.webp&w=1920&q=85" alt="" 
-                        className='h-48 w-full object-contain'/>
+                        <img src="https://agribegri.com/_next/image?url=https%3A%2F%2Fdujjhct8zer0r.cloudfront.net%2Fmedia%2Fprod_image%2F15151901621751288444.webp&w=1920&q=85" alt=""
+                            className='h-48 w-full object-contain' />
 
                         <p className='font-medium'>Best Feild Crop Seeds Products online</p>
                     </div>
 
                     <div className='w-full h-fit px-6 flex flex-col'>
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnItAWHh3RgtidZ3q_PuDSzlwEBmbkRAOsLtQp3SjkHw&s" alt="" 
-                        className='h-48 w-full object-contain'/>
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnItAWHh3RgtidZ3q_PuDSzlwEBmbkRAOsLtQp3SjkHw&s" alt=""
+                            className='h-48 w-full object-contain' />
 
                         <p className='font-medium'>Primary nutrint for plants - Nitrogen, Phosphorous, and Potassioum fertilizer</p>
                     </div>

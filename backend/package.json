@@ -7,17 +7,20 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "nodemon index.js"
+    "test": "nodemon -r dotenv/config index.js"
   },
   "dependencies": {
+    "@google/genai": "^2.22.0",
     "bcrypt": "^6.0.0",
     "cookie-parser": "^1.4.7",
     "cores": "^0.8.0",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
+    "fs": "^0.0.1-security",
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.9.5",
+    "multer": "^2.3.0",
     "nodemon": "^3.1.14"
   }
 }
