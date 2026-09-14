@@ -37,7 +37,7 @@ const Login = () => {
             const response = await axios.post(`http://localhost:3000/farmer/login`, loginInputs, { withCredentials: true })
 
             if(response.status == 200)
-                navigate(`/app`)
+                navigate(`/app`, { replace: true })
 
         } catch (error) {
             console.log('login error: ', error)

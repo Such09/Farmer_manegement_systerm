@@ -3,9 +3,7 @@ import { useLocation } from "react-router-dom"
 const Search = () => {
     const location = useLocation()
 
-    const fertilizers = location.state
-    console.log(fertilizers.fertilizerInfo[0]);
-    
+    const fertilizers = location.state    
 
     return (
         <div className='min-h-screen w-full py-7 px-7 flex flex-wrap gap-2.5 bg-zinc-100'>

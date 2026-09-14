@@ -9,16 +9,32 @@ const Navbar = () => {
     const [isProfileClick, setIsProfileClick] = useState(false);
     const [input, setInput] = useState("");
 
+    // Logout a User
+    const logout = async () => {
+        try {
+            const response = await axios.get(`http://localhost:3000/farmer/logout`, { withCredentials: true });
+
+            console.log('logout res: ', response);
+
+            if (response.status == 200)
+                navigate(`/`, { replace: true });
+
+        } catch (error) {
+            console.log("Logout error is: ", error);
+        }
+    }
+
+    // Get Fertilizers Info
     const searchHandler = async (e) => {
         e.preventDefault();
 
         try {
-            const res = await axios.get(`http://localhost:3000/farmer/fertilizer`, { params: { brand: input }})
+            const res = await axios.get(`http://localhost:3000/farmer/fertilizer`, { params: { brand: input } })
 
             console.log("res: ", res.data.data);
-            
-            if(res.status == 200)
-                navigate(`/app/search`, { state: { fertilizerInfo: res.data.data } } )
+
+            if (res.status == 200)
+                navigate(`/app/search`, { state: { fertilizerInfo: res.data.data } })
 
         } catch (error) {
             console.log("searchin error is: ", error.response);
@@ -28,7 +44,7 @@ const Navbar = () => {
     }
 
     return (
-        <div className='w-full flex justify-between items-center relative'>
+        <div className='w-full flex flex-col relative'>
             <div className='w-full h-16 px-4 flex justify-between items-center bg-cyan-900'>
                 {/* Logo */}
                 <div className='h-14 w-14 rounded-full'>
@@ -62,9 +78,18 @@ const Navbar = () => {
 
                     <Link to={`/app/contact`} className='font-medium text-white text-lg'>Contact</Link>
 
-                    <Link to={`/app/help`} className='font-medium text-white text-lg'>Help</Link>
+                    {/* Logout Button */}
+                    <button onClick={() => logout()}
+                        className='h-fit w-fit py-1 px-3 text-white font-medium bg-cyan-500 rounded active:scale-95'>
+                        Logout
+                    </button>
 
                 </div>
+            </div>
+
+            <div className='hidden h-10 w-full px-5 md:flex items-center gap-4 justify-start bg-indigo-950'>
+                <Link to={`/app/fertilizer`} className='text-white font-medium hover:text-orange-500'>Fertilizers</Link>
+                <Link to={`/app/seed`} className='text-white font-medium hover:text-orange-500'>Seeds</Link>
             </div>
 
             {/* Mobile */}

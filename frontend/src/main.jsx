@@ -11,6 +11,8 @@ import Crop from './pages/Crop.jsx'
 import Login from './pages/Login.jsx'
 import Search from './pages/Search.jsx'
 import ScanCrop from './pages/ScanCrop.jsx'
+import Fertilizers from './pages/Agri_Product/Fertilizers.jsx'
+import Seeds from './pages/Agri_Product/Seeds.jsx'
 
 
 const router = createBrowserRouter (
@@ -26,6 +28,8 @@ const router = createBrowserRouter (
         <Route path='crop' element={ <Crop /> } />
         <Route path='search' element={ <Search /> } />
         <Route path='scan' element={ <ScanCrop /> } />
+        <Route path='fertilizer' element={ <Fertilizers /> } />
+        <Route path='seed' element={ <Seeds /> } />
       </Route>
     </>
   )
