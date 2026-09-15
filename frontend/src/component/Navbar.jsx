@@ -28,13 +28,13 @@ const Navbar = () => {
     const searchHandler = async (e) => {
         e.preventDefault();
 
-        try {
-            const res = await axios.get(`http://localhost:3000/farmer/fertilizer`, { params: { brand: input } })
+        try {            
+            const res = await axios.get(`http://localhost:3000/farmer/cropinfo`, { params: {name: input} })
 
             console.log("res: ", res.data.data);
 
             if (res.status == 200)
-                navigate(`/app/search`, { state: { fertilizerInfo: res.data.data } })
+                navigate(`/app/search`, { state: { cropData: res.data.data } })
 
         } catch (error) {
             console.log("searchin error is: ", error.response);
@@ -87,9 +87,10 @@ const Navbar = () => {
                 </div>
             </div>
 
-            <div className='hidden h-10 w-full px-5 md:flex items-center gap-4 justify-start bg-indigo-950'>
+            <div className='hidden h-10 w-full px-5 md:flex items-center gap-5 justify-start bg-indigo-950'>
                 <Link to={`/app/fertilizer`} className='text-white font-medium hover:text-orange-500'>Fertilizers</Link>
                 <Link to={`/app/seed`} className='text-white font-medium hover:text-orange-500'>Seeds</Link>
+                <Link to={`/app`} className='text-white font-medium hover:text-orange-500'>Add Crop</Link>
             </div>
 
             {/* Mobile */}
