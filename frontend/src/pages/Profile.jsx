@@ -6,13 +6,14 @@ import { useNavigate, useLocation } from 'react-router-dom';
 const Profile = () => {
   const navigate = useNavigate();
   const [data, setData] = useState({});
+  const [isPersnal, setIsPersnal] = useState(false);
 
   // profile
   const profile = async () => {
     try {
       const res = await axios.get(`http://localhost:3000/farmer/profile`, { withCredentials: true })
       setData(res.data.user)
-
+      // console.log(res.data);
     } catch (error) {
       console.log("profile error: ", error.status)
       if (error.status == 401)
@@ -23,7 +24,7 @@ const Profile = () => {
 
   useEffect(() => {
     profile()
-  },[])
+  }, [])
 
   // Logout a User
   const logout = async () => {
@@ -59,8 +60,8 @@ const Profile = () => {
         <div className='my-2 w-full border border-gray-400'> </div>
 
         <div className='pl-2 flex flex-col gap-2'>
-          <a href="#" className='py-1 font-medium hover:bg-gray-100'>Persnal details</a>
-          <a href="#" className='py-1 font-medium hover:bg-gray-100'>Crop's</a>
+          <p onClick={() => setIsPersnal(!isPersnal)} className='py-1 font-medium hover:bg-gray-100'>Personal detail</p>
+          <a href="#" className='py-1 font-medium hover:bg-gray-100'>Crops</a>
 
           {/* Logout */}
           <p onClick={() => logout()}
@@ -72,8 +73,20 @@ const Profile = () => {
       </div>
 
       {/* Show information */}
-      <div className='h-screen w-2/3 flex flex-col bg-white'>
+      <div className='h-screen w-2/3 flex justify-center py-4 px-4 bg-white'>
+        {/* isPersnal - Personal detail */}
+        {
+          isPersnal
+            ? <div className='w-full h-fit flex flex-col gap-2'>
+              <h1 className='text-lg font-bold mb-2 '>Personal detail</h1>
 
+              <div className='w-full px-3 flex flex-col gap-2'>
+                <p> <label className='font-medium'>Name:</label> {data.name}</p>
+                <p> <label className='font-medium'>Email:</label> {data.email}</p>
+              </div>
+            </div>
+            : <div className='hidden'></div>
+        }
       </div>
     </div>
   )

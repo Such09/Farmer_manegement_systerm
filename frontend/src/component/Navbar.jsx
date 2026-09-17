@@ -74,7 +74,7 @@ const Navbar = () => {
                     <Link to={`/app/profile`}
                         className='font-medium text-white text-lg'>Profile</Link>
 
-                    <Link to={`/app/crop`} className='font-medium text-white text-lg'>Crop's</Link>
+                    <Link to={`/app/crop`} className='font-medium text-white text-lg'>Crops</Link>
 
                     <Link to={`/app/contact`} className='font-medium text-white text-lg'>Contact</Link>
 
@@ -90,7 +90,7 @@ const Navbar = () => {
             <div className='hidden h-10 w-full px-5 md:flex items-center gap-5 justify-start bg-indigo-950'>
                 <Link to={`/app/fertilizer`} className='text-white font-medium hover:text-orange-500'>Fertilizers</Link>
                 <Link to={`/app/seed`} className='text-white font-medium hover:text-orange-500'>Seeds</Link>
-                <Link to={`/app`} className='text-white font-medium hover:text-orange-500'>Add Crop</Link>
+                <Link to={`/app/add_crop`} className='text-white font-medium hover:text-orange-500'>Add Crop</Link>
             </div>
 
             {/* Mobile */}

@@ -19,7 +19,11 @@ const userSchema = new Schema({
     avatar: {
         type: String,
         default: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOFQKU46GDzMUf8QTw2-wBM18tj39pY3x0X2JGisTWpw&s"
-    }
+    },
+    crops: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Addcrop"
+    }]
 },
     { timestamps: true }
 )
