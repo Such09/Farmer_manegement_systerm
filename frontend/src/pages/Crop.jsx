@@ -9,7 +9,7 @@ const Crop = () => {
     const getData = async () => {
         try {
             const res = await axios.get(`http://localhost:3000/farmer/crops`, { withCredentials: true })
-            // setCropInfo(res.data.data);
+            setCropInfo(res.data.data);
 
         } catch (error) {
             console.log("profile error: ", error.status)
