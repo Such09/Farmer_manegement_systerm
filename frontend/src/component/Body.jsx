@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import hero from '../accets/hero.png'
 
 const Body = () => {
@@ -88,28 +88,32 @@ const Body = () => {
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSynvtargszBv4DHowMVmlwbDfWW-3Cs81LNVzFe5_-Q&s" alt=""
                             className='h-48 w-full object-contain' />
 
-                        <p className='font-medium'>BT Cotton Special Liquid Fertilizer for Cotton Crop 2L</p>
+                        <Link to={`https://www.amazon.in/Cotton-Special-Liquid-Fertilizer-Crop/dp/B0H6WV7LFC?th=1`} 
+                        className='font-medium hover:underline'>BT Cotton Special Liquid Fertilizer for Cotton Crop 2L</Link>
                     </div>
 
                     <div className='w-full h-fit px-6 flex flex-col'>
                         <img src="https://casadeamor.in/cdn/shop/products/cottonseedcakefertilizer-5.jpg?v=1650367686&width=1445" alt=""
                             className='h-48 w-full object-contain' />
 
-                        <p className='font-medium'>Casa De Amor Cottonseed Cake Organic Fertilizer (Kapasya khal)</p>
+                        <Link to={`https://www.amazon.in/Casa-Amor-Fertilizer-Gardening-Flowering/dp/B09Y3D488J?th=1`}
+                        className='font-medium hover:underline'>Casa De Amor Cottonseed Cake Organic Fertilizer (Kapasya khal)</Link>
                     </div>
 
                     <div className='w-full h-fit px-6 flex flex-col'>
                         <img src="https://agribegri.com/_next/image?url=https%3A%2F%2Fdujjhct8zer0r.cloudfront.net%2Fmedia%2Fprod_image%2F15151901621751288444.webp&w=1920&q=85" alt=""
                             className='h-48 w-full object-contain' />
 
-                        <p className='font-medium'>Best Feild Crop Seeds Products online</p>
+                        <Link to={`https://www.kisanshop.in/product/ankur-bhaskar-f1-hybrid-maize-seeds?srsltid=AU7gw4V05uhBjaetLl5OmaVkpxrOdyRx5m9ijX5hMsuy-6W3s7E84tyB`} 
+                        className='font-medium hover:underline'>Best Feild Crop Seeds Products online</Link>
                     </div>
 
                     <div className='w-full h-fit px-6 flex flex-col'>
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnItAWHh3RgtidZ3q_PuDSzlwEBmbkRAOsLtQp3SjkHw&s" alt=""
                             className='h-48 w-full object-contain' />
 
-                        <p className='font-medium'>Primary nutrint for plants - Nitrogen, Phosphorous, and Potassioum fertilizer</p>
+                        <Link to={`https://www.iffco.in/en/primary-nutrients`} 
+                        className='font-medium hover:underline'>Primary nutrint for plants - Nitrogen, Phosphorous, and Potassioum fertilizer</Link>
                     </div>
                 </div>
             </div>

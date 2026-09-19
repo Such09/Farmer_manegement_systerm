@@ -71,26 +71,22 @@ const Navbar = () => {
                         </button>
                     </form>
 
+                    <Link to={`/app`} className='font-medium text-white text-lg hover:text-amber-200'>Home</Link>
+
                     <Link to={`/app/profile`}
-                        className='font-medium text-white text-lg'>Profile</Link>
+                        className='font-medium text-white text-lg hover:text-amber-200'>Profile</Link>
 
-                    <Link to={`/app/crop`} className='font-medium text-white text-lg'>Crops</Link>
+                    <Link to={`/app/crop`} className='font-medium text-white text-lg hover:text-amber-200'>Crops</Link>
 
-                    <Link to={`/app/contact`} className='font-medium text-white text-lg'>Contact</Link>
-
-                    {/* Logout Button */}
-                    <button onClick={() => logout()}
-                        className='h-fit w-fit py-1 px-3 text-white font-medium bg-cyan-500 rounded active:scale-95'>
-                        Logout
-                    </button>
-
+                    <Link to={`/app/contact`} className='font-medium text-white text-lg hover:text-amber-200'>Contact</Link>
                 </div>
             </div>
 
-            <div className='hidden h-10 w-full px-5 md:flex items-center gap-5 justify-start bg-indigo-950'>
+            <div className='hidden h-10 w-full px-5 md:flex items-center gap-6 justify-start bg-indigo-950'>
                 <Link to={`/app/fertilizer`} className='text-white font-medium hover:text-orange-500'>Fertilizers</Link>
                 <Link to={`/app/seed`} className='text-white font-medium hover:text-orange-500'>Seeds</Link>
                 <Link to={`/app/add_crop`} className='text-white font-medium hover:text-orange-500'>Add Crop</Link>
+                <Link to={`/app/scan`} className='text-white font-medium hover:text-orange-500'>Scan Crop</Link>
             </div>
 
             {/* Mobile */}
