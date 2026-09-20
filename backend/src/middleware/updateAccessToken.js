@@ -7,7 +7,7 @@ export const updateAccessToken = async (req, res, next) => {
 
         const info = jwt.verify(refreshToken, `${process.env.ACCESS_SCREAT}`);
 
-        const user = await User.findOne({ email: info.email })
+        const user = await User.findOne({ id: info._id })
 
         if (refreshToken !== user.refreshToken) {
             return res.status(401).json({
@@ -15,7 +15,7 @@ export const updateAccessToken = async (req, res, next) => {
             });
         }
 
-        const accessToken = jwt.sign({ email: info.email }, `${process.env.ACCESS_SCREAT}`, { expiresIn: `${process.env.ACCESS_EXPIRY}` })
+        const accessToken = jwt.sign({ id: _id }, `${process.env.ACCESS_SCREAT}`, { expiresIn: `${process.env.ACCESS_EXPIRY}` })
 
         res.cookie("accessToken", accessToken, {
             httpOnly: true,

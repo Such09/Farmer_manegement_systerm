@@ -6,10 +6,12 @@ import { fertilizers, seeds } from "../controller/argri_product_controller.js";
 import { upload } from "../middleware/fileUploder.js";
 import { scanCrop } from "../controller/scanCropPhoto.js";
 import { cropInfo } from "../controller/cropInfo_contro.js";
+import { loginAdmin, logoutAdmin, resiterAdmin } from "../controller/admin_contro.js";
+import { adminProfile } from "../controller/Admin_controller/adminProfile.js";
 
 const router = Router();
 
-// Authentication
+// User Authentication
 router.post('/creat_user', creatUser);
 router.post('/login', loginUser);
 router.get(`/logout`, logoutUser);
@@ -30,5 +32,14 @@ router.get(`/crops`, isValidUser, crops_info);
 
 // Scan crops data Gemini AI 
 router.post(`/scan`, upload.single("crop"), scanCrop)
+
+
+// Admin Authentication
+router.post(`/resister_admin`, resiterAdmin);
+router.post(`/login_admin`, loginAdmin);
+router.get(`/logout_admin`, logoutAdmin);
+
+// Valid admin
+router.get(`/ad_profile`, isValidUser, adminProfile);
 
 export { router }

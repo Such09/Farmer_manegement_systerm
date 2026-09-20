@@ -1,65 +1,65 @@
+import { Admin } from '../model/admin_model.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { User } from "../model/user_model.js";
 
 // Resister
-export const creatUser = async (req, res) => {
+export const resiterAdmin = async (req, res) => {
     try {
         const { name, email, password } = req.body; // Destructuring properties
 
-        const isExist = await User.findOne({ email: email });  // find user exist or not
+        const isExist = await Admin.findOne({ email: email });  // find admin exist or not
 
         if (isExist) {
             return res.status(200).json({
-                message: "user is already exist"
+                message: "admin is already exist"
             })
         }
 
         const hash = await bcrypt.hash(password, 10)  // Convert in hash password
 
-        const user = await User.create({    // Create new user
+        const admin = await Admin.create({    // Create new user
             name,
             email,
             password: hash      // Store hash password in database
         });
 
         return res.status(201).json({
-            message: "user create successfully"
+            message: "You Resister successfully"
         })
     } catch (error) {
         return res.status(400).json({
-            message: "user is not found"
+            message: "admin is not found"
         })
     }
 }
 
-// Login user
-export const loginUser = async (req, res) => {
-    console.log("req: ", req.body);
-    try {
-        console.log("req: ", req.body);
-        
+// Login Admin
+export const loginAdmin = async (req, res) => {
+    console.log("admin req: ", req.body);
+    try {    
+        console.log("admin req: ", req.body);
+            
         const { email, password } = req.body
 
-        const user = await User.findOne({ email: email })  // Check user resiter or not
+        const admin = await Admin.findOne({ email: email })  // Check admin resiter or not
 
-        if (!user) {
+        if (!admin) {
             return res.status(400).json({
-                message: "email is not resiter create your account"
-            })
+                message: "something went wrong"
+            });
         }
 
-        const match = await bcrypt.compare(password, user.password)  // Compare password
+        const match = await bcrypt.compare(password, admin.password)  // Compare password
 
-        if (!match) {                       // user enter wrong password
+        if (!match) {                       // admin enter wrong password
             res.status(400).json({
                 message: "something went wrong"
-            })
-        }
+            });
+        }        
 
         // Create access and refresh token
-        const accessToken = jwt.sign({ id: user._id }, `${process.env.ACCESS_SCREAT}`, { expiresIn: `${process.env.ACCESS_EXPIRY}` })
-        const refreshToken = jwt.sign({ id: user._id }, `${process.env.REFRESH_SCREAT}`, { expiresIn: `${process.env.REFRESH_EXPIRY}` })
+        const accessToken = jwt.sign({ id: admin._id }, `${process.env.ACCESS_SCREAT}`, { expiresIn: `${process.env.ACCESS_EXPIRY}` })
+        const refreshToken = jwt.sign({ id: admin._id }, `${process.env.REFRESH_SCREAT}`, { expiresIn: `${process.env.REFRESH_EXPIRY}` })
 
         // Set cookies on Brower
         res.cookie("accessToken", accessToken, {
@@ -77,8 +77,8 @@ export const loginUser = async (req, res) => {
         })
 
         // Save refreshToken is Database
-        user.refreshToken = refreshToken;
-        await user.save();
+        admin.refreshToken = refreshToken;
+        await admin.save();
 
         return res.status(200).json({
             message: "user longin successfully."
@@ -86,13 +86,13 @@ export const loginUser = async (req, res) => {
 
     } catch (error) {
         return res.status(500).json({
-            message: "user is not found"
+            message: "somethin went wrong"
         })
     }
 }
 
-// Logout user
-export const logoutUser = async (req, res) => {
+// Logout admin
+export const logoutAdmin = async (req, res) => {
     try {
         const refreshToken = req.cookies.refreshToken;
 
@@ -110,17 +110,17 @@ export const logoutUser = async (req, res) => {
             })
         }
 
-        const user = await User.findById({ id: info._id });
+        const admin = await Admin.findById({ _id: info.id });
 
-        if(!user){
+        if(!admin){
             return res.status(400).json({
                 message: "something went wrong"
             });
         }
 
         // Remove refreshToken
-        user.refreshToken = "";
-        user.save();
+        admin.refreshToken = "";
+        admin.save();
 
         // Remove cookies from Broser
         res.clearCookie("accessToken", {
