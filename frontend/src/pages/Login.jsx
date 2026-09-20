@@ -36,11 +36,11 @@ const Login = () => {
         try {
             const response = await axios.post(`http://localhost:3000/farmer/login`, loginInputs, { withCredentials: true })
 
-            if(response.status == 200)
+            if (response.status == 200)
                 navigate(`/app`, { replace: true })
 
         } catch (error) {
-            console.log('login error: ', error)
+            console.log("Status:", error);
         } finally {
             setLoginInputs({ email: "", password: "" });
         }
@@ -53,9 +53,9 @@ const Login = () => {
         try {
             const response = await axios.post(`http://localhost:3000/farmer/creat_user`, resisterInput)
 
-            if(response.status == 201)
+            if (response.status == 201)
                 setIsResister(!isResister)
-            
+
         } catch (error) {
             console.log('resiter error: ', error)
         } finally {

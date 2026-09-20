@@ -27,8 +27,8 @@ export const creatUser = async (req, res) => {
             message: "user create successfully"
         })
     } catch (error) {
-        return res.status(400).json({
-            message: "user is not found"
+        return res.status(500).json({
+            message: "something went wrong"
         })
     }
 }
@@ -36,7 +36,7 @@ export const creatUser = async (req, res) => {
 // Login user
 export const loginUser = async (req, res) => {
     try {
-        const { email, password } = req.body
+        const { email, password } = req.body        
 
         const user = await User.findOne({ email: email })  // Check user resiter or not
 
@@ -49,7 +49,7 @@ export const loginUser = async (req, res) => {
         const match = await bcrypt.compare(password, user.password)  // Compare password
 
         if (!match) {                       // user enter wrong password
-            res.status(400).json({
+            return res.status(400).json({
                 message: "something went wrong"
             })
         }
@@ -82,9 +82,11 @@ export const loginUser = async (req, res) => {
         })
 
     } catch (error) {
-        return res.status(400).json({
-            message: "user is not found"
-        })
+        console.log("LOGIN ERROR:", error);
+
+        return res.status(500).json({
+            message: "Internal server error"
+        });
     }
 }
 
@@ -109,7 +111,7 @@ export const logoutUser = async (req, res) => {
 
         const user = await User.findOne({ email: info.email });
 
-        if(!user){
+        if (!user) {
             return res.status(400).json({
                 message: "something went wrong"
             });
