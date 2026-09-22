@@ -31,7 +31,7 @@ export const userProfile = async (req, res) => {
 // add crop detail
 export const addCrop = async (req, res) => {
     try {
-        const {name,  veriety, session, showing, fertilizer,harvest} = req.body
+        const { name, veriety, session, showing, fertilizer, harvest } = req.body
         const refreshToken = req.cookies.refreshToken
 
 
@@ -43,7 +43,7 @@ export const addCrop = async (req, res) => {
             fertilizer,
             harvest
         });
-        
+
         if (!refreshToken) {
             return res.status(401).json({
                 message: "Add crop info successfully",
@@ -53,7 +53,7 @@ export const addCrop = async (req, res) => {
 
         const info = jwt.verify(refreshToken, process.env.REFRESH_SCREAT)
 
-        const user = await User.findById({ _id: info.id})
+        const user = await User.findById({ _id: info.id })
 
         if (!user) {
             return res.status(401).json({
@@ -102,6 +102,54 @@ export const crops_info = async (req, res) => {
     } catch (error) {
         return res.status(500).json({
             message: "something went wrong",
+            error
+        });
+    }
+}
+
+// Remove Crop record
+export const removeCropRecord = async (req, res) => {
+    try {
+        const { id } = req.params
+
+        const refreshToken = req.cookies.refreshToken;
+
+        if (!refreshToken) {
+            return res.status(200).json({
+                message: "token is expire."
+            })
+        }
+
+        const info = jwt.verify(refreshToken, process.env.REFRESH_SCREAT)
+
+        if (!info) {
+            return res.status(400).json({
+                message: "Invalid token."
+            })
+        }
+
+        const user = await User.findById(info.id);
+
+        if (!user) {
+            return res.status(400).json({
+                message: "something went wrong"
+            });
+        }
+
+        // remove crop id from user crops array
+        user.crops = user.crops.filter(Id => Id.toString() !== id);
+        await user.save();
+
+        // remove record from database
+        const crop = await Addcrop.findByIdAndDelete({_id: id});
+
+        return res.status(200).json({
+            message: "remove crop",
+        });
+
+    } catch (error) {
+        return res.status(500).json({
+            message: "Internal sercer error",
             error
         });
     }

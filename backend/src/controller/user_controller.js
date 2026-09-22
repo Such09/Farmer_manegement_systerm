@@ -101,15 +101,15 @@ export const logoutUser = async (req, res) => {
         const info = jwt.verify(refreshToken, process.env.REFRESH_SCREAT)
 
         if (!info) {
-            return res.status(400).json({
+            return res.status(200).json({
                 message: "Invalid token."
             })
         }
         
         const user = await User.findById(info.id);
-        console.log("user: ", user);
+        
         if(!user){
-            return res.status(400).json({
+            return res.status(200).json({
                 message: "something went wrong"
             });
         }
