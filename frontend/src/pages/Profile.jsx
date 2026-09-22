@@ -48,7 +48,7 @@ const Profile = () => {
     try {
       const response = await axios.get(`http://localhost:3000/farmer/logout`, { withCredentials: true });
 
-      console.log('logout res: ', response);
+      // console.log('logout res: ', response);
 
       if (response.status == 200)
         navigate(`/`);

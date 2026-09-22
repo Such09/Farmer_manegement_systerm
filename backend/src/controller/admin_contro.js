@@ -35,10 +35,7 @@ export const resiterAdmin = async (req, res) => {
 
 // Login Admin
 export const loginAdmin = async (req, res) => {
-    console.log("admin req: ", req.body);
-    try {    
-        console.log("admin req: ", req.body);
-            
+    try {            
         const { email, password } = req.body
 
         const admin = await Admin.findOne({ email: email })  // Check admin resiter or not

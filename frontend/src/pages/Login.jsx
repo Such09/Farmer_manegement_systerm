@@ -34,7 +34,6 @@ const Login = () => {
         e.preventDefault();
 
         try {
-            console.log(loginInputs)
             const response = await axios.post(`http://localhost:3000/farmer/login`, loginInputs, { withCredentials: true })
 
             if(response.status == 200)

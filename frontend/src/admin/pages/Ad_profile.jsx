@@ -13,7 +13,7 @@ const Ad_profile = () => {
         try {
             const res = await axios.get(`http://localhost:3000/farmer/ad_profile`, { withCredentials: true })
             setData(res.data.user);
-            console.log(res.data);
+            // console.log(res.data);
         } catch (error) {
             console.log("profile error: ", error.message)
             if (error.status == 401)
@@ -31,7 +31,7 @@ const Ad_profile = () => {
         try {
             const response = await axios.get(`http://localhost:3000/farmer/logout_admin`, { withCredentials: true });
 
-            console.log('logout res: ', response);
+            // console.log('logout res: ', response);
 
             if (response.status == 200)
                 navigate(`/admin`);

@@ -35,10 +35,7 @@ export const creatUser = async (req, res) => {
 
 // Login user
 export const loginUser = async (req, res) => {
-    console.log("req: ", req.body);
-    try {
-        console.log("req: ", req.body);
-        
+    try {        
         const { email, password } = req.body
 
         const user = await User.findOne({ email: email })  // Check user resiter or not
@@ -109,9 +106,9 @@ export const logoutUser = async (req, res) => {
                 message: "Invalid token."
             })
         }
-
-        const user = await User.findById({ id: info._id });
-
+        
+        const user = await User.findById(info.id);
+        console.log("user: ", user);
         if(!user){
             return res.status(400).json({
                 message: "something went wrong"

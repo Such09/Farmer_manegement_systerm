@@ -36,13 +36,15 @@ const Ad_Navbar = () => {
 
                     <Link to={`/admin_app/profile`} className='font-medium text-white text-lg hover:text-amber-200'>Profile</Link>
 
-                    <Link to={`/admin_app`} className='font-medium text-white text-lg hover:text-amber-200'>Crops</Link>
+                    <Link to={`/admin_app`} className='font-medium text-white text-lg hover:text-amber-200'>Messages</Link>
                 </div>
             </div>
 
             <div className='hidden h-10 w-full px-5 md:flex items-center gap-6 justify-start bg-indigo-950'>
                 <Link to={`/admin_app`} className='text-white font-medium hover:text-orange-500'>Fertilizers</Link>
                 <Link to={`/admin_app`} className='text-white font-medium hover:text-orange-500'>Seeds</Link>
+                <Link to={`/admin_app`} className='text-white font-medium hover:text-orange-500'>Crops</Link>
+                <Link to={`/admin_app`} className='text-white font-medium hover:text-orange-500'>Farmers</Link>
             </div>
 
             {/* Mobile */}
