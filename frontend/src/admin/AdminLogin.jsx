@@ -1,15 +1,15 @@
-import { useState } from "react";
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
+const AdminLogin = () => {
     const [isResister, setIsResister] = useState(false);
     const [loginInputs, setLoginInputs] = useState({ email: "", password: "" });
     const [resisterInput, setResisterInput] = useState({ name: "", email: "", password: "" });
 
     const navigate = useNavigate();
 
-    // login Information
+    // admin login Information
     const loginInfo = (e) => {
         const { name, value } = e.target
 
@@ -19,7 +19,7 @@ const Login = () => {
         }))
     }
 
-    // Resiter Information
+    // admin Resiter Information
     const resisterInfo = (e) => {
         const { name, value } = e.target
 
@@ -29,18 +29,18 @@ const Login = () => {
         }))
     }
 
-    // login handler
+    // admin Login
     const loginHandler = async (e) => {
         e.preventDefault();
 
         try {
-            const response = await axios.post(`http://localhost:3000/farmer/login`, loginInputs, { withCredentials: true })
+            const response = await axios.post(`http://localhost:3000/farmer/login_admin`, loginInputs, { withCredentials: true })
 
-            if (response.status == 200)
-                navigate(`/app`, { replace: true })
+            if(response.status == 200)
+                navigate(`/admin_app`, { replace: true })
 
         } catch (error) {
-            console.log("Status:", error);
+            console.log('login error: ', error.message)
         } finally {
             setLoginInputs({ email: "", password: "" });
         }
@@ -50,12 +50,12 @@ const Login = () => {
     const resiterHandler = async (e) => {
         e.preventDefault();
 
-        try {
-            const response = await axios.post(`http://localhost:3000/farmer/creat_user`, resisterInput)
+        try {            
+            const response = await axios.post(`http://localhost:3000/farmer/resister_admin`, resisterInput)
 
-            if (response.status == 201)
+            if(response.status == 201)
                 setIsResister(!isResister)
-
+            
         } catch (error) {
             console.log('resiter error: ', error)
         } finally {
@@ -75,7 +75,7 @@ const Login = () => {
                 isResister ? <div className="hidden"></div>
                     : <form onSubmit={loginHandler}
                         className='absolute h-fit w-full px-10 py-4 flex flex-col gap-3 rounded-xl bg-white/20 md:w-1/2'>
-                        <h1 className='text-3xl my-2 font-bold text-blue-200'>Login</h1>
+                        <h1 className='text-3xl my-2 font-bold text-blue-200'>Admin Login</h1>
 
                         <input type="text" placeholder='Enter email....' name="email"
                             onChange={loginInfo}
@@ -92,16 +92,9 @@ const Login = () => {
                         </button>
 
                         <div className="w-full h-fit flex flex-col justify-center items-center">
-                            <p className="text-white font-medium cursor-pointer">
-                                Forget Password?
-                            </p>
                             <p onClick={() => setIsResister(!isResister)}
                                 className="text-white font-medium cursor-pointer">
                                 Create an Account?
-                            </p>
-                            <p onClick={() => navigate(`/admin`)}
-                                className="text-white font-medium cursor-pointer">
-                                Admin Login
                             </p>
                         </div>
 
@@ -115,7 +108,7 @@ const Login = () => {
                     ?
                     <form onSubmit={resiterHandler}
                         className='absolute h-fit w-full px-7 py-4 flex flex-col gap-3 rounded-xl bg-white/20 md:w-1/2'>
-                        <h1 className='text-2xl my-2 font-bold text-blue-50'>Resiter</h1>
+                        <h1 className='text-2xl my-2 font-bold text-blue-50'>Admin Resiter</h1>
 
                         <input type="text" placeholder='Enter name' name="name"
                             onChange={resisterInfo}
@@ -152,4 +145,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default AdminLogin

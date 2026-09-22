@@ -9,21 +9,6 @@ const Navbar = () => {
     const [isProfileClick, setIsProfileClick] = useState(false);
     const [input, setInput] = useState("");
 
-    // Logout a User
-    const logout = async () => {
-        try {
-            const response = await axios.get(`http://localhost:3000/farmer/logout`, { withCredentials: true });
-
-            console.log('logout res: ', response);
-
-            if (response.status == 200)
-                navigate(`/`, { replace: true });
-
-        } catch (error) {
-            console.log("Logout error is: ", error);
-        }
-    }
-
     // Get Fertilizers Info
     const searchHandler = async (e) => {
         e.preventDefault();

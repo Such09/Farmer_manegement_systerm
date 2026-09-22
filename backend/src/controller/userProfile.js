@@ -7,7 +7,7 @@ export const userProfile = async (req, res) => {
     try {
         const info = req.user
 
-        const user = await User.findOne({ email: info.email });
+        const user = await User.findById({ _id: info.id });
 
         if (!user) {
             return res.status(400).json({
@@ -53,7 +53,7 @@ export const addCrop = async (req, res) => {
 
         const info = jwt.verify(refreshToken, process.env.REFRESH_SCREAT)
 
-        const user = await User.findOne({ email: info.email })
+        const user = await User.findById({ _id: info.id})
 
         if (!user) {
             return res.status(401).json({
@@ -86,7 +86,7 @@ export const crops_info = async (req, res) => {
     try {
         const info = req.user
 
-        const user = await User.findOne({ email: info.email }).populate("crops");
+        const user = await User.findById({ _id: info.id }).populate("crops");
 
         if (!user) {
             return res.status(400).json({
