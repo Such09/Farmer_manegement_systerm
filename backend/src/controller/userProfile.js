@@ -141,10 +141,68 @@ export const removeCropRecord = async (req, res) => {
         await user.save();
 
         // remove record from database
-        const crop = await Addcrop.findByIdAndDelete({_id: id});
+        const crop = await Addcrop.findByIdAndDelete({ _id: id });
 
         return res.status(200).json({
             message: "remove crop",
+        });
+
+    } catch (error) {
+        return res.status(500).json({
+            message: "Internal sercer error",
+            error
+        });
+    }
+}
+
+// Update Crop info
+// first find given crop - ( ID )
+export const userCropDetail = async (req, res) => {
+    try {
+        const { id } = req.params
+
+        const crop = await Addcrop.findById(id);
+
+        if (!crop) {
+            return res.status(200).json({
+                message: "crop is not found"
+            });
+        }
+
+        return res.status(200).json({
+            message: "find crop",
+            data: crop
+        });
+
+    } catch (error) {
+        return res.status(500).json({
+            message: "Internal sercer error",
+            error
+        });
+    }
+}
+
+export const updateCropDetail = async (req, res) => {
+    try {
+        const { _id } = req.body
+
+        const crop = await Addcrop.findByIdAndUpdate(
+            _id,
+            req.body,
+            {
+                returnDocument: "after",
+                runValidators: true
+            }
+        );
+
+        if (!crop) {
+            return res.status(404).json({
+                message: "crop is not found"
+            });
+        }
+
+        return res.status(200).json({
+            message: "update crop successfully"
         });
 
     } catch (error) {

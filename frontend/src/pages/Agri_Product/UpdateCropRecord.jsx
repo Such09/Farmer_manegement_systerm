@@ -1,10 +1,19 @@
 import axios from 'axios'
-import { useState } from 'react'
-import { useNavigate } from "react-router-dom"
+import { useEffect, useState } from 'react'
+import { useNavigate, useLocation } from "react-router-dom"
 
-const AddCrop = () => {
+const UpdateCropRecord = () => {
     const navigate = useNavigate();
+    const location = useLocation();
     const [inputs, setInputs] = useState({ name: "", veriety: "", session: "", showing: "", fertilizer: "", harvest: "" });
+
+    const crop = location.state;
+
+    useEffect(() => {
+        if (crop) {
+            setInputs(crop)
+        }
+    }, [crop])
 
     const cropD = (e) => {
         const { name, value } = e.target
@@ -15,13 +24,14 @@ const AddCrop = () => {
         }))
     }
 
-    // Submit Crop information
-    const addCrop = async (e) => {
+    // Update Crop information
+    const updateRecord = async (e) => {
         e.preventDefault();
+        
         try {
-            const res = await axios.patch(`http://localhost:3000/farmer/addcrop`, inputs, { withCredentials: true })
-            // console.log("res: ", res.data);
-
+            const res = await axios.patch(`http://localhost:3000/farmer/update_record`, inputs, { withCredentials: true })
+            
+            navigate(`/app/crop`)
         } catch (error) {
             if (error.status == 401) {
                 navigate(`/`)
@@ -39,9 +49,9 @@ const AddCrop = () => {
                 className='h-full w-full object-cover' />
 
             {/* add crop details */}
-            <form onSubmit={addCrop}
+            <form onSubmit={updateRecord}
                 className='absolute h-fit w-2/3 mt-28 py-4 px-10 flex flex-col gap-3 rounded-xl bg-white/30 backdrop-blur-xs'>
-                <h1 className='text-2xl mb-2.5 font-bold'>Add Crop Information</h1>
+                <h1 className='text-2xl mb-2.5 font-bold'>Update Crop Information</h1>
 
                 <input type="text" placeholder='Enter Crop name' name='name'
                     onChange={cropD}
@@ -75,12 +85,13 @@ const AddCrop = () => {
 
                 <div className='w-full flex justify-center'>
                     <button className='h-12 w-2/3 text-white font-bold text-lg rounded-lg bg-green-700 active:scale-95'>
-                        Add Details
+                        Update
                     </button>
+
                 </div>
             </form>
         </div>
     )
 }
 
-export default AddCrop
+export default UpdateCropRecord

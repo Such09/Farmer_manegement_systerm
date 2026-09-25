@@ -20,7 +20,7 @@ const Crop = () => {
         }
     }
 
-    // Delete Crop record
+    // Remove Crop record
     const removeRecord = async(id) => {
         try {
             const res = await axios.patch(`http://localhost:3000/farmer/rm_record/${id}`, {}, { withCredentials: true })
@@ -28,6 +28,20 @@ const Crop = () => {
             
         } catch (error) {
             console.log("deleting crop record: ", error);
+        }
+    }
+
+    // Update Crop record
+    const updateRecord = async(id) => {
+        try {
+            const res = await axios.get(`http://localhost:3000/farmer/user_crop/${id}`)
+            // console.log("response: ", res.data.data);
+
+            // pass data to add_crop page
+            navigate(`/app/update_crop_record`, { state: res.data.data });
+            
+        } catch (error) {
+            console.log("crop info is not recive: ", error);
         }
     }
 
@@ -69,7 +83,8 @@ const Crop = () => {
 
                                     {/* Update crop record */}
                                     <td className='border'> 
-                                        <button className='h-7 px-1 text-white rounded font-medium bg-green-500'>
+                                        <button onClick={() => updateRecord(item._id)}
+                                        className='h-7 px-1 text-white rounded font-medium bg-green-500'>
                                             Update
                                         </button> 
                                     </td>

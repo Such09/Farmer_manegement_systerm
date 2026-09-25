@@ -17,6 +17,7 @@ import AddCrop from './pages/Agri_Product/AddCrop.jsx'
 import AdminLogin from './admin/AdminLogin.jsx'
 import Home from './admin/Home.jsx'
 import Ad_profile from './admin/pages/Ad_profile.jsx'
+import UpdateCropRecord from './pages/Agri_Product/UpdateCropRecord.jsx'
 
 
 const router = createBrowserRouter (
@@ -37,6 +38,7 @@ const router = createBrowserRouter (
         <Route path='fertilizer' element={ <Fertilizers /> } />
         <Route path='seed' element={ <Seeds /> } />
         <Route path='add_crop' element={ <AddCrop /> } />
+        <Route path='update_crop_record' element={ <UpdateCropRecord /> } />
       </Route>
 
       {/* Admin */}

@@ -1,5 +1,6 @@
 import { Cropinfo } from "../model/cropModel.js";
 
+// Search Crop 
 export const cropInfo = async (req, res) => {
     try {
         const { name } = req.query
