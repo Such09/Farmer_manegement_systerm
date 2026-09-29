@@ -11,7 +11,6 @@ const seedSchema = new Schema({
     },
     price: {
         type: String,
-        required: true
     },
     image: {
         type: String,

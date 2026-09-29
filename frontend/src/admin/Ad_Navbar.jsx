@@ -2,8 +2,28 @@ import logo from '../accets/logo.png'
 import { User, Search } from 'lucide-react'
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useState } from 'react';
 
 const Ad_Navbar = () => {
+    const [input, setInput] = useState("");
+    const navigate = useNavigate();
+
+    const formHandler = async (e) => {
+        e.preventDefault();
+
+        try {
+            const response = await axios.get(`http://localhost:3000/farmer/farmer_data`, {params: {name: input}})
+
+            // navigate or carry information
+            navigate(`/admin_app/farmers`, {state: response.data.farmer});
+
+        } catch (error) {
+           console.log("error to find farmer: ", error) 
+        }finally{
+            setInput("")
+        }
+    }
+
   return (
     <div className='w-full flex flex-col relative'>
             <div className='w-full h-16 px-4 flex justify-between items-center bg-cyan-900'>
@@ -21,10 +41,11 @@ const Ad_Navbar = () => {
                 {/* Website */}
                 <div className='hidden w-full md:flex justify-end gap-6'>
                     {/* Search bar */}
-                    <form className='hidden md:flex w-1/2'>
-                        <input type="search" placeholder='search crops....' name='brand'
-                            // onChange={(e) => setInput(e.target.value)}
-                            // value={input}
+                    <form onSubmit={formHandler} 
+                    className='hidden md:flex w-1/2'>
+                        <input type="search" placeholder='search Farmers....' name='name'
+                            onChange={(e) => setInput(e.target.value)}
+                            value={input}
                             className='h-10 w-1/3 px-3 outline-none text-gray-900 font-medium border-blue-100 bg-white rounded-tl-lg rounded-bl-lg' />
 
                         <button className='h-10 w-10 flex justify-center items-center bg-amber-400 rounded-tr-lg rounded-br-lg'>
@@ -40,11 +61,11 @@ const Ad_Navbar = () => {
                 </div>
             </div>
 
+            {/* Sub-navbar */}
             <div className='hidden h-10 w-full px-5 md:flex items-center gap-6 justify-start bg-indigo-950'>
-                <Link to={`/admin_app`} className='text-white font-medium hover:text-orange-500'>Fertilizers</Link>
-                <Link to={`/admin_app`} className='text-white font-medium hover:text-orange-500'>Seeds</Link>
-                <Link to={`/admin_app`} className='text-white font-medium hover:text-orange-500'>Crops</Link>
-                <Link to={`/admin_app`} className='text-white font-medium hover:text-orange-500'>Farmers</Link>
+                <Link to={`/admin_app/add_fertilizer`} className='text-white font-medium hover:text-orange-500'>Fertilizers</Link>
+                <Link to={`/admin_app/add_seed`} className='text-white font-medium hover:text-orange-500'>Seeds</Link>
+                <Link to={`/admin_app/add_crop`} className='text-white font-medium hover:text-orange-500'>Crops</Link>
             </div>
 
             {/* Mobile */}

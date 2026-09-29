@@ -8,6 +8,8 @@ import { scanCrop } from "../controller/scanCropPhoto.js";
 import { cropInfo } from "../controller/cropInfo_contro.js";
 import { loginAdmin, logoutAdmin, resiterAdmin } from "../controller/admin_contro.js";
 import { adminProfile } from "../controller/Admin_controller/adminProfile.js";
+import { addNewCrop, addNewFertilizer, addNewSeed } from "../controller/Admin_controller/addNewProducts.js";
+import { farmersData } from "../controller/Admin_controller/getFarmerData.js";
 
 
 const router = Router();
@@ -45,5 +47,13 @@ router.get(`/logout_admin`, logoutAdmin);
 
 // Valid admin
 router.get(`/ad_profile`, isValidUser, adminProfile);
+
+// Add new Products
+router.post(`/add_fertilizer`, upload.single("pic"), addNewFertilizer);
+router.post(`/add_seed`, upload.single("pic"), addNewSeed)
+router.post(`/add_crop`, upload.single("pic"), addNewCrop);
+
+// Search Farmers
+router.get(`/farmer_data`, farmersData);
 
 export { router }

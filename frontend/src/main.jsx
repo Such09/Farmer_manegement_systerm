@@ -18,6 +18,11 @@ import AdminLogin from './admin/AdminLogin.jsx'
 import Home from './admin/Home.jsx'
 import Ad_profile from './admin/pages/Ad_profile.jsx'
 import UpdateCropRecord from './pages/Agri_Product/UpdateCropRecord.jsx'
+import Add_fertilizer from './admin/pages/Add_fertilizer.jsx'
+import Add_seeds from './admin/pages/Add_seeds.jsx'
+import Add_crop from './admin/pages/Add_crop.jsx'
+import Farmer from './admin/pages/Farmer.jsx'
+import Content from './admin/Content.jsx'
 
 
 const router = createBrowserRouter (
@@ -43,8 +48,12 @@ const router = createBrowserRouter (
 
       {/* Admin */}
       <Route path='/admin_app' element={ <Home /> } >
-          <Route path='' element={ <Body /> } />
+          <Route path='' element={ <Content /> } />
           <Route path='profile' element={ <Ad_profile /> } />
+          <Route path='add_fertilizer' element={ <Add_fertilizer /> } />
+          <Route path='add_seed' element={ <Add_seeds /> } />
+          <Route path='add_crop' element={ <Add_crop /> } />
+          <Route path='farmers' element={ <Farmer /> } />
       </Route>
     </>
   )

@@ -65,10 +65,10 @@ const AdminLogin = () => {
 
     return (
         <div className='relative h-screen w-full flex items-center justify-center'>
+            {/* Background Image */}
             <img src="https://img.magnific.com/premium-photo/close-up-agriculture-scenery-field-wheat-field-farming-background_179935-63108.jpg?semt=ais_hybrid&w=740&q=80" alt=""
                 className="h-full w-full object-cover" />
 
-            {/* Login from */}
 
             {
                 // Login Form
@@ -100,7 +100,6 @@ const AdminLogin = () => {
 
                     </form>
             }
-
 
             {
                 // Resister Form
