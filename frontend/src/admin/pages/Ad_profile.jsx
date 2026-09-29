@@ -1,12 +1,13 @@
 import axios from 'axios';
-import { useEffect } from 'react';
-import { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Ad_profile = () => {
     const navigate = useNavigate();
     const [data, setData] = useState({});
+    const [resisterInput, setResisterInput] = useState({ name: "", email: "", password: "" });
     const [isPersnal, setIsPersnal] = useState(false);
+    const [isCreateAdmin, setIsCreateAdmin] = useState(false);
 
     // profile
     const profile = async () => {
@@ -44,7 +45,39 @@ const Ad_profile = () => {
     // personal info
     const personal = () => {
         setIsPersnal(!isPersnal)
-        setIsCrop(false)
+        setIsCreateAdmin(false)
+    }
+
+    // new admin
+    const createAdmin = () => {
+        setIsCreateAdmin(!isCreateAdmin)
+        setIsPersnal(false)
+    }
+
+    // admin Resiter Information
+    const resisterInfo = (e) => {
+        const { name, value } = e.target
+
+        setResisterInput(prev => ({
+            ...prev,
+            [name]: value
+        }))
+    }
+
+    // Resiter Handler
+    const resiterHandler = async (e) => {
+        e.preventDefault();
+
+        try {            
+            const response = await axios.post(`http://localhost:3000/farmer/resister_admin`, resisterInput)
+            console.log("response: ", response.data);
+            
+            
+        } catch (error) {
+            console.log('resiter error: ', error)
+        } finally {
+            setResisterInput({ name: "", email: "", password: "" });
+        }
     }
 
 
@@ -67,7 +100,11 @@ const Ad_profile = () => {
                 <div className='my-2 w-full border border-gray-400'> </div>
 
                 <div className='pl-2 flex flex-col gap-2'>
+                    {/* Personal detail */}
                     <p onClick={personal} className='py-1 font-medium hover:bg-gray-100'>Personal detail</p>
+
+                    {/* Create a new Admin */}
+                    <p onClick={createAdmin} className='py-1 font-medium hover:bg-gray-100'>Create Admin</p>
 
                     {/* Logout */}
                     <p onClick={() => logout()}
@@ -92,6 +129,37 @@ const Ad_profile = () => {
                             </div>
                         </div>
                         : <div className='hidden'></div>
+                }
+
+                {/* Create a new Admin */}
+                {
+                    isCreateAdmin
+                        ?
+                        <form onSubmit={resiterHandler}
+                            className='absolute h-fit w-full px-7 py-4 flex flex-col gap-3 rounded-xl bg-white drop-shadow-2xl md:w-1/2'>
+                            <h1 className='text-2xl my-2 font-bold text-blue-950'>Admin Resiter</h1>
+
+                            <input type="text" placeholder='Enter name' name="name"
+                                onChange={resisterInfo}
+                                value={resisterInput.name}
+                                className='h-12 w-full px-2 font-medium outline-none text-gray-700 border-2 border-zinc-900 rounded-lg' />
+
+                            <input type="email" placeholder='Enter email' name="email"
+                                onChange={resisterInfo}
+                                value={resisterInput.email}
+                                className='h-12 w-full px-2 font-medium outline-none text-gray-700 border-2 border-zinc-900 rounded-lg' />
+
+                            <input type="password" placeholder='Enter password' name="password"
+                                onChange={resisterInfo}
+                                value={resisterInput.password}
+                                className='h-12 w-full px-2 font-medium outline-none text-gray-700 border-2 border-zinc-900 rounded-lg' />
+
+                            <button className='h-12 w-full text-white text-lg font-bold rounded-lg bg-blue-950 active:scale-95'>
+                                Resister
+                            </button>
+                        </form>
+                        :
+                        <div className="hidden"></div>
                 }
             </div>
         </div>
