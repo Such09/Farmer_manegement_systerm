@@ -10,6 +10,8 @@ import { loginAdmin, logoutAdmin, resiterAdmin } from "../controller/admin_contr
 import { adminProfile } from "../controller/Admin_controller/adminProfile.js";
 import { addNewCrop, addNewFertilizer, addNewSeed } from "../controller/Admin_controller/addNewProducts.js";
 import { farmersData } from "../controller/Admin_controller/getFarmerData.js";
+import { userMessage } from "../controller/contactContro.js";
+import { cropRates } from "../controller/crop_Rate.js";
 
 
 const router = Router();
@@ -26,6 +28,9 @@ router.get(`/profile`, isValidUser, userProfile);
 router.get('/fertilizer', fertilizers);
 router.get(`/seed`, seeds);
 
+// Mandi price - search crop live price
+router.get('/crop_price', cropRates);
+
 // Search
 router.get(`/cropinfo`, cropInfo);
 
@@ -37,7 +42,10 @@ router.get(`/user_crop/:id`, userCropDetail);
 router.patch(`/update_record`, isValidUser, updateCropDetail);
 
 // Scan crops data Gemini AI 
-router.post(`/scan`, upload.single("crop"), scanCrop)
+router.post(`/scan`, upload.single("crop"), scanCrop);
+
+// Contact Us
+router.post('/contact', userMessage);
 
 
 // Admin Authentication
@@ -50,7 +58,7 @@ router.get(`/ad_profile`, isValidUser, adminProfile);
 
 // Add new Products
 router.post(`/add_fertilizer`, upload.single("pic"), addNewFertilizer);
-router.post(`/add_seed`, upload.single("pic"), addNewSeed)
+router.post(`/add_seed`, upload.single("pic"), addNewSeed);
 router.post(`/add_crop`, upload.single("pic"), addNewCrop);
 
 // Search Farmers

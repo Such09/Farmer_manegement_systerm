@@ -4,6 +4,7 @@ import './index.css'
 import App from './App.jsx'
 import {Route, RouterProvider, createBrowserRouter, createRoutesFromElements} from 'react-router-dom'
 import Body from './component/Body.jsx'
+// import Home_page from './component/Home_page.jsx'
 import Profile from './pages/Profile.jsx'
 import Contact from './pages/Contact.jsx'
 import Help from './pages/Help.jsx'
@@ -23,6 +24,8 @@ import Add_seeds from './admin/pages/Add_seeds.jsx'
 import Add_crop from './admin/pages/Add_crop.jsx'
 import Farmer from './admin/pages/Farmer.jsx'
 import Content from './admin/Content.jsx'
+import Crop_mandi_price from './pages/Crop_mandi_price.jsx'
+import Weather_info from './pages/Weather_info.jsx'
 
 
 const router = createBrowserRouter (
@@ -33,6 +36,7 @@ const router = createBrowserRouter (
 
       {/* Farmer */}
       <Route path='/app' element={ <App /> } >
+        {/* <Route path='' element={ <Home_page /> } /> */}
         <Route path='' element={ <Body /> } />
         <Route path='profile' element={ <Profile /> } />
         <Route path='contact' element={ <Contact /> } />
@@ -44,6 +48,8 @@ const router = createBrowserRouter (
         <Route path='seed' element={ <Seeds /> } />
         <Route path='add_crop' element={ <AddCrop /> } />
         <Route path='update_crop_record' element={ <UpdateCropRecord /> } />
+        <Route path='mandi_price' element={ <Crop_mandi_price /> } />
+        <Route path='weather_info' element={ <Weather_info /> } />
       </Route>
 
       {/* Admin */}
