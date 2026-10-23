@@ -37,42 +37,85 @@ const Add_seeds = () => {
     }
 
     return (
-        <div className='relative h-screen w-full flex justify-center items-center'>
-            {/* background image */}
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLHyxsEhdsh_yNFcNQoXWpcUCfp6LZRjKwK-QP5gJFRw&s=10" alt=""
-                className="h-full w-full object-cover" />
+        <div className="min-h-screen w-full flex items-center justify-center bg-green-50 px-4 py-8">
 
-            <form onSubmit={fromHandler}
-                className='absolute h-fit w-2/3 flex flex-col py-7 px-9 gap-5 rounded-xl bg-white/30 backdrop-blur-sm'>
-                <h1 className='text-2xl font-bold text-white'>Add Seed</h1>
+            <form
+                onSubmit={fromHandler}
+                className="w-full max-w-xl flex flex-col gap-5 rounded-2xl border border-green-100 bg-white p-6 shadow-lg sm:p-8"
+            >
+                {/* Header */}
+                <div className="mb-2 text-center">
+                    <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-green-100 text-3xl">
+                        🌱
+                    </div>
 
-                <input type="text" placeholder='Enter Brand Name' name="brand"
-                    onChange={add}
-                    value={inputs.brand}
-                    className='h-12 w-full px-3 font-medium outline-none text-zinc-700 border-2 border-gray-200 rounded-lg' />
+                    <h1 className="text-2xl font-bold text-green-800">
+                        Add Seed
+                    </h1>
 
-                <input type="text" placeholder='Enter Product Name' name="product"
-                    onChange={add}
-                    value={inputs.product}
-                    className='h-12 w-full px-3 font-medium outline-none text-zinc-700 border-2 border-gray-200 rounded-lg' />
+                    <p className="mt-1 text-sm text-gray-500">
+                        Add your seed product details
+                    </p>
+                </div>
 
-                <input type="text" placeholder='Basic information' name="info"
-                    onChange={add}
-                    value={inputs.info}
-                    className='h-12 w-full px-3 font-medium outline-none text-zinc-700 border-2 border-gray-200 rounded-lg' />
-
+                {/* Brand Name */}
                 <div>
-                    <h1 className='font-medium pb-1 text-white'>Add Seed Picture</h1>
-                    <input type="file" name="pic"
-                        onChange={(e) => setPic(e.target.files[0])}
-                        className='h-10 w-fit px-3 font-medium outline-none text-zinc-700 border-2 border-gray-200 rounded-lg' />
+                    <label className="mb-1.5 block text-sm font-semibold text-gray-700">
+                        Brand Name
+                    </label>
+
+                    <input type="text" placeholder="Enter brand name" name="brand"
+                        onChange={add}
+                        value={inputs.brand}
+                        className="h-12 w-full rounded-lg border border-gray-200 bg-gray-50 px-4 text-gray-700 outline-none 
+                transition focus:border-green-600 focus:ring-2 focus:ring-green-100"/>
                 </div>
 
-                <div className="w-full flex justify-center">
-                    <button className="h-12 w-2/3 rounded-lg text-lg font-bold text-white bg-green-900 active:scale-95">
-                        Add Product
-                    </button>
+                {/* Product Name */}
+                <div>
+                    <label className="mb-1.5 block text-sm font-semibold text-gray-700">
+                        Product Name
+                    </label>
+
+                    <input type="text" placeholder="Enter seed product name" name="product"
+                        onChange={add}
+                        value={inputs.product}
+                        className="h-12 w-full rounded-lg border border-gray-200 bg-gray-50 px-4 text-gray-700 outline-none 
+                transition focus:border-green-600 focus:ring-2 focus:ring-green-100"/>
                 </div>
+
+                {/* Information */}
+                <div>
+                    <label className="mb-1.5 block text-sm font-semibold text-gray-700">
+                        Basic Information
+                    </label>
+
+                    <textarea placeholder="Enter seed details..." name="info"
+                        onChange={add}
+                        value={inputs.info}
+                        rows="3"
+                        className="w-full resize-none rounded-lg border border-gray-200 bg-gray-50 p-4 text-gray-700 outline-none transition
+                focus:border-green-600 focus:ring-2 focus:ring-green-100"/>
+                </div>
+
+                {/* Seed Picture */}
+                <div>
+                    <label className="mb-2 block text-sm font-semibold text-gray-700">
+                        Seed Picture
+                    </label>
+
+                    <input type="file" name="pic" accept="image/*"
+                        onChange={(e) => setPic(e.target.files[0])}
+                        className="w-full cursor-pointer rounded-lg border border-dashed border-green-300 bg-green-50 p-3 text-sm text-gray-600 file:mr-4 
+                file:rounded-md file:border-0 file:bg-green-700 file:px-4 file:py-2 file:font-medium file:text-white hover:file:bg-green-800"/>
+                </div>
+
+                {/* Submit Button */}
+                <button type="submit"
+                    className="mt-2 h-12 w-full rounded-lg bg-green-700 text-base font-semibold text-white shadow-md 
+            transition hover:bg-green-800 active:scale-[0.98]">
+                    Add Seed
+                </button>
             </form>
         </div>
     )

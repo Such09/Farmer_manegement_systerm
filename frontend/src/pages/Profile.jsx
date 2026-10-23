@@ -66,96 +66,230 @@ const Profile = () => {
 
   // crop info
   const crop = () => {
-     setIsCrop(!isCrop)
+    setIsCrop(!isCrop)
     setIsPersnal(false)
   }
 
   return (
-    <div className='min-h-screen w-full flex justify-center gap-5 bg-zinc-100'>
-      {/* Side Bar */}
-      <div className='h-screen w-1/4 py-4 flex flex-col bg-white'>
-        <h1 className='pl-2 text-xl font-bold'>Account</h1>
+    <div className="min-h-screen w-full bg-linear-to-br from-green-50 via-white to-emerald-50 p-4 md:p-8">
 
-        {/* Profile photo */}
-        <div className='pl-2 flex flex-col gap-3'>
-          <div className='h-16 w-16 pt-3 rounded-full'>
-            <img src={data.avatar} alt=""
-              className='h-full w-full rounded-full object-cover' />
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-5 md:flex-row">
+
+        {/* Sidebar */}
+        <aside className="h-fit w-full shrink-0 rounded-2xl border border-green-100 bg-white p-5 shadow-sm md:min-h-\[550px\] md:w-64">
+
+          <div className="mb-6 flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-green-100 text-xl">
+              🌱
+            </div>
+            <div>
+              <h1 className="text-xl font-bold text-green-800">My Account</h1>
+              <p className="text-xs text-gray-500">Manage your profile</p>
+            </div>
           </div>
 
-          <h1 className='text-lg font-medium'> {data.name} </h1>
-        </div>
+          {/* Profile */}
+          <div className="mb-6 flex items-center gap-3 rounded-xl bg-green-50 p-3">
+            <div className="h-14 w-14 shrink-0 overflow-hidden rounded-full border-2 border-green-200 bg-green-100">
+              <img
+                src={data.avatar}
+                alt="Profile"
+                className="h-full w-full object-cover"
+              />
+            </div>
 
-        <div className='my-2 w-full border border-gray-400'> </div>
+            <div className="min-w-0">
+              <h2 className="truncate font-semibold text-gray-800">
+                {data.name}
+              </h2>
+              <p className="text-sm text-gray-500">Farmer Account</p>
+            </div>
+          </div>
 
-        <div className='pl-2 flex flex-col gap-2'>
-          <p onClick={personal} className='py-1 font-medium hover:bg-gray-100'>Personal detail</p>
-          <p onClick={crop} className='py-1 font-medium hover:bg-gray-100'>Crops</p>
-
-          {/* Logout */}
-          <p onClick={() => logout()}
-            className='py-1 font-medium cursor-pointer hover:bg-gray-100'>
-            Logout
+          <p className="mb-3 px-2 text-xs font-semibold uppercase tracking-wider text-gray-400">
+            Menu
           </p>
-        </div>
 
-      </div>
+          <div className="flex flex-col gap-2">
 
-      {/* Show information */}
-      <div className='h-screen w-2/3 flex justify-center py-4 px-4 bg-white'>
-        {/* isPersnal - Personal detail */}
-        {
-          isPersnal
-            ? <div className='w-full h-fit flex flex-col gap-2'>
-              <h1 className='text-lg font-bold mb-2 '>Personal detail</h1>
+            <button
+              onClick={personal}
+              className={`flex w-full items-center gap-3 rounded-lg px-4 py-3 text-left font-medium transition ${isPersnal
+                  ? "bg-green-700 text-white shadow-sm"
+                  : "text-gray-600 hover:bg-green-50 hover:text-green-800"
+                }`}
+            >
+              <span>👤</span>
+              Personal Details
+            </button>
 
-              <div className='w-full px-3 flex flex-col gap-2'>
-                <p> <label className='font-medium'>Name:</label> {data.name}</p>
-                <p> <label className='font-medium'>Email:</label> {data.email}</p>
+            <button
+              onClick={crop}
+              className={`flex w-full items-center gap-3 rounded-lg px-4 py-3 text-left font-medium transition ${isCrop
+                  ? "bg-green-700 text-white shadow-sm"
+                  : "text-gray-600 hover:bg-green-50 hover:text-green-800"
+                }`}
+            >
+              <span>🌾</span>
+              My Crops
+            </button>
+
+            <div className="my-2 border-t border-gray-100"></div>
+
+            <button
+              onClick={() => logout()}
+              className="flex w-full items-center gap-3 rounded-lg px-4 py-3 text-left font-medium text-red-600 transition hover:bg-red-50"
+            >
+              <span>↪</span>
+              Logout
+            </button>
+
+          </div>
+        </aside>
+
+        {/* Main Content */}
+        <main className="min-h-\[400px\] min-w-0 flex-1 rounded-2xl border border-green-100 bg-white p-5 shadow-sm sm:p-7">
+
+          {/* Personal Details */}
+          {isPersnal && (
+            <div className="flex flex-col gap-6">
+
+              <div className="border-b border-gray-100 pb-5">
+                <h1 className="text-2xl font-bold text-gray-800">
+                  Personal Details
+                </h1>
+                <p className="mt-1 text-sm text-gray-500">
+                  View your account information.
+                </p>
+              </div>
+
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+                <div className="h-20 w-20 shrink-0 overflow-hidden rounded-full border-4 border-green-100 bg-green-50">
+                  <img
+                    src={data.avatar}
+                    alt="Profile"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+
+                <div>
+                  <h2 className="text-xl font-semibold text-gray-800">
+                    {data.name}
+                  </h2>
+                  <p className="text-sm text-gray-500">Registered Farmer</p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+
+                <div className="rounded-xl border border-green-100 bg-green-50/70 p-5">
+                  <p className="mb-2 text-sm font-medium text-gray-500">
+                    Full Name
+                  </p>
+                  <p className="wrap-break-word text-lg font-semibold text-gray-800">
+                    {data.name}
+                  </p>
+                </div>
+
+                <div className="rounded-xl border border-green-100 bg-green-50/70 p-5">
+                  <p className="mb-2 text-sm font-medium text-gray-500">
+                    Email Address
+                  </p>
+                  <p className="wrap-break-word text-lg font-semibold text-gray-800">
+                    {data.email}
+                  </p>
+                </div>
+
               </div>
             </div>
-            : <div className='hidden'></div>
-        }
+          )}
 
-        {/* Crop information */}
-        {
-          isCrop
-            ? <div className='h-screen w-full flex flex-col items-center gap-3 py-4 px-4 bg-white'>
-              <h1 className='text-2xl font-medium'>Your Crop Details</h1>
+          {/* Crop Information */}
+          {isCrop && (
+            <div className="flex min-w-0 flex-col gap-5">
 
-              <table className='h-fit py-4 w-2/3 border '>
-                <thead className='text-center h-12 bg-blue-200'>
-                  <tr>
-                    <th className='border'>Name</th>
-                    <th className='border'>Veriety</th>
-                    <th className='border'>Session</th>
-                    <th className='border'>Showing</th>
-                    <th className='border'>Fertilizer</th>
-                    <th className='border'>Harvest</th>
-                  </tr>
-                </thead>
+              <div className="flex flex-wrap items-center justify-between gap-3 border-b border-gray-100 pb-5">
+                <div>
+                  <h1 className="text-2xl font-bold text-green-800">
+                    Your Crop Details
+                  </h1>
+                  <p className="mt-1 text-sm text-gray-500">
+                    Information about your crops and harvest.
+                  </p>
+                </div>
 
-                {
+                <span className="rounded-full bg-green-100 px-4 py-2 text-sm font-semibold text-green-800">
+                  Total Crops: {cropInfo.length}
+                </span>
+              </div>
 
-                  cropInfo.map((item) => (
-                    <tbody key={item._id}
-                      className='text-center border h-10 py-3 px-1'>
+              <div className="w-full overflow-x-auto rounded-xl border border-green-100">
+                <table className="w-full min-w-[800 px] border-collapse text-left">
+                  <thead>
+                    <tr className="bg-green-700 text-white">
+                      <th className="px-4 py-4 text-sm font-semibold">Name</th>
+                      <th className="px-4 py-4 text-sm font-semibold">Variety</th>
+                      <th className="px-4 py-4 text-sm font-semibold">Season</th>
+                      <th className="px-4 py-4 text-sm font-semibold">Sowing</th>
+                      <th className="px-4 py-4 text-sm font-semibold">Fertilizer</th>
+                      <th className="px-4 py-4 text-sm font-semibold">Harvest</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    {cropInfo.length > 0 ? (
+                      cropInfo.map((item) => (
+                        <tr
+                          key={item._id}
+                          className="border-b border-gray-100 transition hover:bg-green-50"
+                        >
+                          <td className="px-4 py-4 font-semibold text-gray-800">
+                            {item.name}
+                          </td>
+                          <td className="px-4 py-4 text-gray-600">
+                            {item.veriety}
+                          </td>
+                          <td className="px-4 py-4 text-gray-600">
+                            {item.session}
+                          </td>
+                          <td className="px-4 py-4 text-gray-600">
+                            {item.showing}
+                          </td>
+                          <td className="px-4 py-4 text-gray-600">
+                            {item.fertilizer}
+                          </td>
+                          <td className="px-4 py-4 text-gray-600">
+                            {item.harvest}
+                          </td>
+                        </tr>
+                      ))
+                    ) : (
                       <tr>
-                        <td className='border'> {item.name} </td>
-                        <td className='border'> {item.veriety} </td>
-                        <td className='border'> {item.session} </td>
-                        <td className='border'> {item.showing} </td>
-                        <td className='border'> {item.fertilizer} </td>
-                        <td className='border'> {item.harvest} </td>
+                        <td
+                          colSpan="6"
+                          className="px-4 py-12 text-center text-gray-500"
+                        >
+                          <div className="mb-2 text-4xl">🌱</div>
+                          <p className="font-semibold text-gray-700">
+                            No crops found
+                          </p>
+                          <p className="mt-1 text-sm">
+                            Your crop details will appear here.
+                          </p>
+                        </td>
                       </tr>
-                    </tbody>
-                  ))
+                    )}
+                  </tbody>
+                </table>
+              </div>
 
-                }
-              </table>
+              <p className="text-xs text-gray-400">
+                On smaller screens, scroll horizontally to view all crop details.
+              </p>
             </div>
-            : <div className='hidden'></div>
-        }
+          )}
+
+        </main>
       </div>
     </div>
   )
