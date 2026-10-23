@@ -2,7 +2,6 @@ import axios from "axios"
 
 export const cropRates = async (req, res) => {
     try {
-        console.log("req:", req.query);
         const { commodity } = req.query;
 
         const today_price = await axios.get(`https://api.data.gov.in/resource/${process.env.RESORCE_ID}`,

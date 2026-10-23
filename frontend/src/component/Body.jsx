@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom'
-import hero from '../accets/hero.png'
+import hero from '../accets/hero6.png'
 
 const Body = () => {
     const navigate = useNavigate()
@@ -9,7 +9,7 @@ const Body = () => {
             {/* Hero Section */}
             <div className='h-72 w-full'>
                 <img src={hero} alt=""
-                    className='h-full w-full object-cover object-top' />
+                    className='h-full w-full object-cover' />
             </div>
 
             {/* Features */}

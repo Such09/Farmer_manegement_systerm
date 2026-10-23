@@ -12,6 +12,7 @@ import { addNewCrop, addNewFertilizer, addNewSeed } from "../controller/Admin_co
 import { farmersData } from "../controller/Admin_controller/getFarmerData.js";
 import { userMessage } from "../controller/contactContro.js";
 import { cropRates } from "../controller/crop_Rate.js";
+import { weatherData } from "../controller/weather_info.js";
 
 
 const router = Router();
@@ -30,6 +31,9 @@ router.get(`/seed`, seeds);
 
 // Mandi price - search crop live price
 router.get('/crop_price', cropRates);
+
+// Weather information
+router.get('/weather_info', weatherData);
 
 // Search
 router.get(`/cropinfo`, cropInfo);
