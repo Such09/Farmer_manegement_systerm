@@ -8,7 +8,9 @@ const Profile = () => {
   const [data, setData] = useState({});
   const [isPersnal, setIsPersnal] = useState(false);
   const [isCrop, setIsCrop] = useState(false);
+  const [isNoti, setIsNoti] = useState(false);
   const [cropInfo, setCropInfo] = useState();
+  const [notificationInfo, setNotificationInfo] = useState();
 
   // profile
   const profile = async () => {
@@ -38,9 +40,37 @@ const Profile = () => {
     }
   }
 
+  // notification data
+  const notificationData = async () => {
+    try {
+      const res = await axios.get(`http://localhost:3000/farmer/notification_data`, { withCredentials: true })
+      setNotificationInfo(res.data.data);
+      // console.log('res: ', res.data.data);
+
+    } catch (error) {
+      console.log("profile error: ", error.status)
+      if (error.status == 401)
+        navigate(`/`)
+
+    }
+  }
+
+  // remove notification
+  const removeNotification = async(id) => {
+    try {
+      const response = await axios.patch(`http://localhost:3000/farmer/remove_message`, { id }, { withCredentials: true })
+      console.log('response: ', response);
+      
+    } catch (error) {
+      console.log('notification is not remove: ', error)
+    }    
+  }
+
   useEffect(() => {
     profile();
     getData();
+    notificationData();
+    removeNotification();
   }, [])
 
   // Logout a User
@@ -62,11 +92,20 @@ const Profile = () => {
   const personal = () => {
     setIsPersnal(!isPersnal)
     setIsCrop(false)
+    setIsNoti(false)
   }
 
   // crop info
   const crop = () => {
     setIsCrop(!isCrop)
+    setIsPersnal(false)
+    setIsNoti(false)
+  }
+
+  // notification info
+  const notification = () => {
+    setIsNoti(!isNoti)
+    setIsCrop(false)
     setIsPersnal(false)
   }
 
@@ -110,32 +149,47 @@ const Profile = () => {
             Menu
           </p>
 
+          {/* Navigate options */}
           <div className="flex flex-col gap-2">
-
+            {/* profile info */}
             <button
               onClick={personal}
               className={`flex w-full items-center gap-3 rounded-lg px-4 py-3 text-left font-medium transition ${isPersnal
-                  ? "bg-green-700 text-white shadow-sm"
-                  : "text-gray-600 hover:bg-green-50 hover:text-green-800"
+                ? "bg-green-700 text-white shadow-sm"
+                : "text-gray-600 hover:bg-green-50 hover:text-green-800"
                 }`}
             >
               <span>👤</span>
               Personal Details
             </button>
 
+            {/* My crops */}
             <button
               onClick={crop}
               className={`flex w-full items-center gap-3 rounded-lg px-4 py-3 text-left font-medium transition ${isCrop
-                  ? "bg-green-700 text-white shadow-sm"
-                  : "text-gray-600 hover:bg-green-50 hover:text-green-800"
+                ? "bg-green-700 text-white shadow-sm"
+                : "text-gray-600 hover:bg-green-50 hover:text-green-800"
                 }`}
             >
               <span>🌾</span>
               My Crops
             </button>
 
+            {/* Notification */}
+            <button
+              onClick={notification}
+              className={`flex w-full items-center gap-3 rounded-lg px-4 py-3 text-left font-medium transition ${isNoti
+                ? "bg-green-700 text-white shadow-sm"
+                : "text-gray-600 hover:bg-green-50 hover:text-green-800"
+                }`}
+            >
+              <span>🔔</span>
+              Notification
+            </button>
+
             <div className="my-2 border-t border-gray-100"></div>
 
+            {/* Logout */}
             <button
               onClick={() => logout()}
               className="flex w-full items-center gap-3 rounded-lg px-4 py-3 text-left font-medium text-red-600 transition hover:bg-red-50"
@@ -289,6 +343,83 @@ const Profile = () => {
             </div>
           )}
 
+          {/* Notifications */}
+          {isNoti && (
+            <div className="flex flex-col gap-6">
+
+              {/* Heading */}
+              <div className="flex items-center justify-between border-b border-gray-100 pb-5">
+                <div>
+                  <h1 className="text-2xl font-bold text-green-800">
+                    Notifications
+                  </h1>
+                  <p className="mt-1 text-sm text-gray-500">
+                    Stay informed about important updates and responses.
+                  </p>
+                </div>
+
+                <div className="h-12 w-12 flex items-center justify-center rounded-xl bg-green-100 text-2xl">
+                  🔔
+                </div>
+              </div>
+
+              {/* Notification List */}
+              <div className="h-96 overflow-y-scroll hide-scrollbar flex flex-col gap-4">
+
+                {notificationInfo.length > 0 ? (
+                  notificationInfo.map((item) => (
+                    <div key={item._id}
+                      className="flex gap-4 rounded-xl border border-green-100 bg-white p-4 sm:p-5 shadow-sm 
+                      hover:shadow-md hover:border-green-300 transition-all duration-200">
+
+                      {/* Icon */}
+                      <div className="h-11 w-11 shrink-0 flex items-center justify-center rounded-full bg-green-100 text-xl">
+                        📩
+                      </div>
+
+                      {/* Content */}
+                      <div className="min-w-0 flex-1 flex flex-col gap-2">
+
+                        <div className="flex flex-wrap items-center justify-between gap-2">
+                          <h2 className="font-semibold text-gray-800">
+                            {item.title}
+                          </h2>
+
+                          <button onClick={() => removeNotification(item._id)}
+                          className="rounded-full px-3 py-1 text-xs font-medium text-green-700 bg-green-100">
+                            Remove 
+                          </button>
+                        </div>
+
+                        <p className="text-sm leading-6 text-gray-600 wrap-break-word">
+                          {item.message}
+                        </p>
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  /* Empty State */
+                  <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-green-200 bg-green-50/50 px-5 py-14 text-center">
+
+                    <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-3xl">
+                      🔔
+                    </div>
+
+                    <h2 className="text-lg font-semibold text-gray-800">
+                      You're All Caught Up!
+                    </h2>
+
+                    <p className="mt-2 max-w-sm text-sm text-gray-500">
+                      You don't have any notifications right now. New updates and responses will appear here.
+                    </p>
+
+                  </div>
+                )}
+
+              </div>
+
+            </div>
+          )}
         </main>
       </div>
     </div>

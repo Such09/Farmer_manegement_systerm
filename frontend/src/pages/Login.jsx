@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'
 import { Sprout, User, Mail, Lock, Eye, EyeOff } from "lucide-react";
+import logo from '../accets/logo.png';
 
 const Login = () => {
     const [isResister, setIsResister] = useState(false);
@@ -159,11 +160,12 @@ const Login = () => {
                 {/* Brand Header */}
                 <div className="flex flex-col items-center bg-green-800 px-6 py-7 text-white">
                     <div className="mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/15 shadow-inner">
-                        <Sprout size={32} />
+                        {/* <Sprout size={32} /> */}
+                        <img src={logo} alt="" className="rounded-2xl"/>
                     </div>
 
                     <h1 className="text-2xl font-extrabold tracking-wide">
-                        AgriGrow
+                        AgriConnect
                     </h1>
 
                     <p className="mt-1 text-center text-sm text-green-100">
@@ -195,15 +197,11 @@ const Login = () => {
                                 <div className="flex h-12 items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 transition focus-within:border-green-600 focus-within:ring-2 focus-within:ring-green-100">
                                     <Mail size={19} className="shrink-0 text-green-700" />
 
-                                    <input
-                                        type="email"
-                                        placeholder="Enter your email"
-                                        name="email"
+                                    <input type="email" placeholder="Enter your email" name="email"
                                         onChange={loginInfo}
                                         value={loginInputs.email}
                                         required
-                                        className="w-full bg-transparent text-sm text-slate-800 outline-none placeholder:text-slate-400"
-                                    />
+                                        className="w-full bg-transparent text-sm text-slate-800 outline-none placeholder:text-slate-400"/>
                                 </div>
                             </div>
 
@@ -216,22 +214,17 @@ const Login = () => {
                                 <div className="flex h-12 items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 transition focus-within:border-green-600 focus-within:ring-2 focus-within:ring-green-100">
                                     <Lock size={19} className="shrink-0 text-green-700" />
 
-                                    <input
-                                        type={showPassword ? "text" : "password"}
-                                        placeholder="Enter your password"
+                                    <input type={showPassword ? "text" : "password"} placeholder="Enter your password"
                                         name="password"
                                         onChange={loginInfo}
                                         value={loginInputs.password}
                                         required
-                                        className="w-full bg-transparent text-sm text-slate-800 outline-none placeholder:text-slate-400"
-                                    />
+                                        className="w-full bg-transparent text-sm text-slate-800 outline-none placeholder:text-slate-400"/>
 
-                                    <button
-                                        type="button"
+                                    <button type="button"
                                         onClick={() => setShowPassword(!showPassword)}
                                         className="text-slate-400 transition hover:text-green-700"
-                                        aria-label={showPassword ? "Hide password" : "Show password"}
-                                    >
+                                        aria-label={showPassword ? "Hide password" : "Show password"}>
                                         {showPassword ? <EyeOff size={19} /> : <Eye size={19} />}
                                     </button>
                                 </div>
@@ -245,36 +238,30 @@ const Login = () => {
                             </div>
 
                             {/* Login Button */}
-                            <button
-                                type="submit"
-                                className="mt-1 flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-green-800 font-bold text-white shadow-md transition hover:bg-green-900 hover:shadow-lg active:scale-[0.98]"
-                            >
+                            <button type="submit" className="mt-1 flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-green-800 
+                            font-bold text-white shadow-md transition hover:bg-green-900 hover:shadow-lg active:scale-[0.98]">
                                 Login <span>→</span>
                             </button>
 
                             {/* Register Link */}
                             <p className="text-center text-sm text-slate-600">
                                 Don't have an account?{" "}
-                                <button
-                                    type="button"
+                                <button type="button"
                                     onClick={() => {
                                         setIsResister(true);
                                         setShowPassword(false);
                                     }}
-                                    className="font-bold text-green-700 hover:text-green-900 hover:underline"
-                                >
+                                    className="font-bold text-green-700 hover:text-green-900 hover:underline">
                                     Create Account
                                 </button>
                             </p>
 
                             {/* Admin Login */}
                             <div className="border-t border-slate-100 pt-4 text-center">
-                                <button
-                                    type="button"
+                                <button type="button"
                                     onClick={() => navigate("/admin")}
-                                    className="text-sm font-semibold text-slate-500 transition hover:text-green-700"
-                                >
-                                    Login as Administrator →
+                                    className="text-sm font-semibold text-slate-500 transition hover:text-green-700">
+                                    Login as Admin →
                                 </button>
                             </div>
 

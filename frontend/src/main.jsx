@@ -26,6 +26,8 @@ import Farmer from './admin/pages/Farmer.jsx'
 import Content from './admin/Content.jsx'
 import Crop_mandi_price from './pages/Crop_mandi_price.jsx'
 import Weather_info from './pages/Weather_info.jsx'
+import Massages from './admin/pages/Massages.jsx'
+import ResponceToMessage from './admin/pages/ResponceToMessage.jsx'
 
 
 const router = createBrowserRouter (
@@ -60,6 +62,8 @@ const router = createBrowserRouter (
           <Route path='add_seed' element={ <Add_seeds /> } />
           <Route path='add_crop' element={ <Add_crop /> } />
           <Route path='farmers' element={ <Farmer /> } />
+          <Route path='messages' element={ <Massages /> } />
+          <Route path='responce' element={ <ResponceToMessage /> } />
       </Route>
     </>
   )

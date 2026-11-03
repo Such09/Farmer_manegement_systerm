@@ -57,7 +57,7 @@ const Ad_Navbar = () => {
 
                     <Link to={`/admin_app/profile`} className='font-medium text-white text-lg hover:text-amber-200'>Profile</Link>
 
-                    <Link to={`/admin_app`} className='font-medium text-white text-lg hover:text-amber-200'>Messages</Link>
+                    <Link to={`/admin_app/messages`} className='font-medium text-white text-lg hover:text-amber-200'>Messages</Link>
                 </div>
             </div>
 

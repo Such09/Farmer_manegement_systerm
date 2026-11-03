@@ -1,7 +1,20 @@
 import { Router } from "express";
 import { creatUser, loginUser, logoutUser } from "../controller/user_controller.js";
 import { isValidUser } from "../middleware/isValidUser.js";
-import { addCrop, crops_info, removeCropRecord, updateCropDetail, userCropDetail, userProfile } from "../controller/userProfile.js";
+
+// farmer profile data
+import { 
+    addCrop, 
+    crops_info, 
+    getNotificationData, 
+    notification, 
+    removeCropRecord, 
+    removeMessage, 
+    updateCropDetail, 
+    userCropDetail, 
+    userProfile 
+} from "../controller/userProfile.js";
+
 import { fertilizers, seeds } from "../controller/argri_product_controller.js";
 import { upload } from "../middleware/fileUploder.js";
 import { scanCrop } from "../controller/scanCropPhoto.js";
@@ -13,6 +26,7 @@ import { farmersData } from "../controller/Admin_controller/getFarmerData.js";
 import { userMessage } from "../controller/contactContro.js";
 import { cropRates } from "../controller/crop_Rate.js";
 import { weatherData } from "../controller/weather_info.js";
+import { messages } from "../controller/Admin_controller/massaging.js";
 
 
 const router = Router();
@@ -37,6 +51,12 @@ router.get('/weather_info', weatherData);
 
 // Search
 router.get(`/cropinfo`, cropInfo);
+
+// get notification data
+router.get(`/notification_data`, isValidUser, getNotificationData);
+
+// remove notification or messages
+router.patch('/remove_message', isValidUser, removeMessage);
 
 // update Farmer Details
 router.patch('/addcrop', addCrop);
@@ -65,7 +85,13 @@ router.post(`/add_fertilizer`, upload.single("pic"), addNewFertilizer);
 router.post(`/add_seed`, upload.single("pic"), addNewSeed);
 router.post(`/add_crop`, upload.single("pic"), addNewCrop);
 
+// messages (quetion) replay
+router.post('/sent_replay', notification)
+
 // Search Farmers
 router.get(`/farmer_data`, farmersData);
+
+// Get farmer queries - messages
+router.get('/messages', messages);
 
 export { router }

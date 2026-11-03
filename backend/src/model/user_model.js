@@ -23,6 +23,10 @@ const userSchema = new Schema({
     crops: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Addcrop"
+    }],
+    notification: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Notification"
     }]
 },
     { timestamps: true }

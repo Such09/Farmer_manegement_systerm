@@ -65,7 +65,7 @@ const Farmer = () => {
                     Farmer {index + 1}
                   </p>
 
-                  <h2 className="mt-1 break-words text-lg font-semibold text-gray-800">
+                  <h2 className="mt-1 break-word text-lg font-semibold text-gray-800">
                     {farm.name}
                   </h2>
 

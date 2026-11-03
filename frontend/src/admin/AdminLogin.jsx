@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { Sprout, Mail, Lock, Eye, EyeOff, ShieldCheck } from "lucide-react";
+import logo from '../accets/logo.png';
 
 const AdminLogin = () => {
     const [isResister, setIsResister] = useState(false);
@@ -76,7 +77,8 @@ const AdminLogin = () => {
                 <div className="flex flex-col items-center bg-green-800 px-6 py-8 text-white">
 
                     <div className="mb-3 flex h-16 w-16 items-center justify-center rounded-2xl bg-white/15 shadow-inner">
-                        <ShieldCheck size={36} />
+                        {/* <ShieldCheck size={36} /> */}
+                        <img src={logo} alt="" className='rounded-2xl'/>
                     </div>
 
                     <h1 className="text-2xl font-extrabold tracking-wide">

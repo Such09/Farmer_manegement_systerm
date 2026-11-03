@@ -1,6 +1,9 @@
 import { User } from "../model/user_model.js";
 import { Addcrop } from "../model/addCrop.js";
+import { Contact } from "../model/contactModel.js";
+import { Notification } from "../model/farmerNotification_model.js";
 import jwt from 'jsonwebtoken'
+import { messages } from "./Admin_controller/massaging.js";
 
 // Find Farmer
 export const userProfile = async (req, res) => {
@@ -46,7 +49,7 @@ export const addCrop = async (req, res) => {
 
         if (!refreshToken) {
             return res.status(401).json({
-                message: "Add crop info successfully",
+                message: "Please, login and try again",
                 status: 401
             });
         }
@@ -72,6 +75,103 @@ export const addCrop = async (req, res) => {
 
         return res.status(200).json({
             message: "Add crop info successfully"
+        });
+    } catch (error) {
+        return res.status(500).json({
+            message: "something went wrong",
+            error
+        });
+    }
+}
+
+// Farmer Notification
+export const notification = async (req, res) => {
+    try {
+        const { id, email, title, message } = req.body
+
+        const noti = await Notification.create({
+            email,
+            title,
+            message
+        });
+
+        const user = await User.findOne({ email: email })
+
+        const delContact = await Contact.findByIdAndDelete(id)
+
+        if (!user) {
+            return res.status(401).json({
+                message: "user is not found",
+                status: 401
+            });
+        }
+
+        if (!user.notification) {
+            user.notification = [];
+        }
+
+        user.notification.push(noti._id)
+        await user.save()
+
+        return res.status(200).json({
+            message: "sent message successfully"
+        });
+    } catch (error) {
+        return res.status(500).json({
+            message: "something went wrong",
+            error
+        });
+    }
+}
+
+// get perticular farmer notification data
+export const getNotificationData = async (req, res) => {
+    try {
+        const info = req.user
+
+        const user = await User.findById({ _id: info.id }).populate("notification");
+
+        if (!user) {
+            return res.status(401).json({
+                message: "Invalid user"
+            });
+        }
+
+        return res.status(200).json({
+            message: "find crop data",
+            data: user.notification
+        });
+    } catch (error) {
+        return res.status(500).json({
+            messages: "something went wrong",
+            error
+        });
+    }
+}
+
+// remove Notification or message
+export const removeMessage = async (req, res) => {
+    try {
+        const { id } = req.body
+        const info = req.user
+
+        const user = await User.findById({ _id: info.id })
+
+        if (!user) {
+            return res.status(400).json({
+                message: "user is not found"
+            });
+        }
+
+        // remove notification id from user notification array
+        user.notification = user.notification.filter(Id => Id.toString() !== id);
+        await user.save();
+
+        // remove record from database
+        const del = await Notification.findByIdAndDelete(id)
+
+        return res.status(200).json({
+            message: "notification delete successfully",
         });
     } catch (error) {
         return res.status(500).json({
