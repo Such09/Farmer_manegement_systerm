@@ -74,7 +74,7 @@ export const addCrop = async (req, res) => {
         await user.save();
 
         return res.status(200).json({
-            message: "Add crop info successfully"
+            message: "Add new crop record"
         });
     } catch (error) {
         return res.status(500).json({

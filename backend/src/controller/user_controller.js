@@ -11,7 +11,7 @@ export const creatUser = async (req, res) => {
 
         if (isExist) {
             return res.status(200).json({
-                message: "user is already exist"
+                message: "Farmer is already exist"
             })
         }
 
@@ -24,7 +24,7 @@ export const creatUser = async (req, res) => {
         });
 
         return res.status(201).json({
-            message: "user create successfully"
+            message: "Your account create successfully"
         })
     } catch (error) {
         return res.status(500).json({
@@ -41,7 +41,7 @@ export const loginUser = async (req, res) => {
 
         if (!user) {
             return res.status(400).json({
-                message: "email is not resiter create your account"
+                message: "farmer is not resiter, create your account first"
             })
         }
 
@@ -62,14 +62,14 @@ export const loginUser = async (req, res) => {
             httpOnly: true,
             secure: false,      // false ? access HTTP & HTTPS : only HTTPS
             sameSite: 'lax',
-            maxAge: 5 * 60 * 1000
+            maxAge: 60 * 60 * 1000
         })
 
         res.cookie("refreshToken", refreshToken, {
             httpOnly: true,
             secure: false,
             sameSite: 'lax',
-            maxAge: 10 * 60 * 1000
+            maxAge: 24 * 60 * 60 * 1000
         })
 
         // Save refreshToken is Database
@@ -77,7 +77,7 @@ export const loginUser = async (req, res) => {
         await user.save();
 
         return res.status(200).json({
-            message: "user longin successfully."
+            message: "You are longin successfully."
         })
 
     } catch (error) {
@@ -93,23 +93,23 @@ export const logoutUser = async (req, res) => {
         const refreshToken = req.cookies.refreshToken;
 
         if (!refreshToken) {
-            return res.status(200).json({
-                message: "token is expire."
+            return res.status(401).json({
+                message: "Logout successfully"
             })
         }
 
         const info = jwt.verify(refreshToken, process.env.REFRESH_SCREAT)
 
         if (!info) {
-            return res.status(200).json({
-                message: "Invalid token."
+            return res.status(401).json({
+                message: "Logout successfully"
             })
         }
         
         const user = await User.findById(info.id);
         
         if(!user){
-            return res.status(200).json({
+            return res.status(401).json({
                 message: "something went wrong"
             });
         }
@@ -132,7 +132,7 @@ export const logoutUser = async (req, res) => {
         });
 
         return res.status(200).json({
-            message: "Logout successfuly"
+            message: "Logout successfully"
         });
 
     } catch (error) {

@@ -15,8 +15,7 @@ const Navbar = () => {
 
         try {            
             const res = await axios.get(`http://localhost:3000/farmer/cropinfo`, { params: {name: input} })
-
-            console.log("res: ", res.data.data);
+            // console.log("res: ", res.data.data);
 
             if (res.status == 200)
                 navigate(`/app/search`, { state: { cropData: res.data.data } })
@@ -78,18 +77,22 @@ const Navbar = () => {
             {
                 isProfileClick
                     ?
-                    <div className='w-full h-fit mt-56 px-2 flex flex-col gap-2 bg-white absolute'>
+                    <div className='w-full h-fit mt-16 px-5 flex flex-col gap-2 bg-white absolute'>
+                        <Link to={`/app`} onClick={() => setIsProfileClick(!isProfileClick)}
+                            className='font-medium py-1 rounded-lg px-2 hover:bg-green-50'>Home</Link>
+
                         <Link to={`/app/profile`} onClick={() => setIsProfileClick(!isProfileClick)}
-                            className='font-medium py-1 hover:bg-gray-50'>Profile</Link>
+                            className='font-medium py-1 rounded-lg px-2 hover:bg-green-50'>Profile</Link>
 
                         <Link to={`/app/crop`} onClick={() => setIsProfileClick(!isProfileClick)}
-                            className='font-medium py-1 hover:bg-gray-50'>Crop</Link>
+                            className='font-medium py-1 rounded-lg px-2 hover:bg-green-50'>Crop</Link>
 
                         <Link to={`/app/contact`} onClick={() => setIsProfileClick(!isProfileClick)}
-                            className='font-medium py-1 hover:bg-gray-50'>Contact</Link>
+                            className='font-medium py-1 rounded-lg px-2 hover:bg-green-50'>Contact</Link>
 
                         <Link to={`/app/help`} onClick={() => setIsProfileClick(!isProfileClick)}
-                            className='font-medium py-1 hover:bg-gray-50'>Help</Link>
+                            className='font-medium py-1 rounded-lg px-2 hover:bg-green-50'>Help</Link>
+        
                     </div>
 
                     : <div className='hidden'></div>

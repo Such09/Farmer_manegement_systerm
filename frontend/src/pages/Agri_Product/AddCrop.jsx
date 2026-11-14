@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useState } from 'react'
 import { useNavigate } from "react-router-dom"
+import { errortoast, successtoast, warningtoast } from '../../util/tost';
 
 const AddCrop = () => {
     const navigate = useNavigate();
@@ -21,12 +22,18 @@ const AddCrop = () => {
         try {
             const res = await axios.patch(`http://localhost:3000/farmer/addcrop`, inputs, { withCredentials: true })
             // console.log("res: ", res.data);
+            if(res.status == 200)
+                navigate('/app/crop')
+
+            successtoast(res.data.message)
 
         } catch (error) {
+            warningtoast(error.res?.data.message)
             if (error.status == 401) {
+                errortoast(error.res?.message)
                 navigate(`/`)
             }
-            console.log("crop detail error: ", error);
+            // console.log("crop detail error: ", error);
         } finally {
             setInputs({ name: "", veriety: "", session: "", showing: "", fertilizer: "", harvest: "" });
         }
@@ -37,10 +44,8 @@ const AddCrop = () => {
 
             <div className="mx-auto w-full max-w-2xl">
 
-                <form
-                    onSubmit={addCrop}
-                    className="flex flex-col gap-5 rounded-2xl border border-green-100 bg-white p-6 shadow-md sm:p-8"
-                >
+                <form onSubmit={addCrop}
+                    className="flex flex-col gap-5 rounded-2xl border border-green-100 bg-white p-6 shadow-md sm:p-8">
                     {/* Heading */}
                     <div className="mb-2 border-b border-green-100 pb-4">
                         <h1 className="text-2xl font-bold text-green-800 sm:text-3xl">
@@ -56,14 +61,10 @@ const AddCrop = () => {
                         <label className="text-sm font-semibold text-gray-700">
                             Crop Name
                         </label>
-                        <input
-                            type="text"
-                            placeholder="Enter crop name"
-                            name="name"
+                        <input type="text" placeholder="Enter crop name" name="name"
                             onChange={cropD}
                             value={inputs.name}
-                            className="h-12 w-full rounded-lg border border-gray-300 px-4 text-gray-700 outline-none transition focus:border-green-600 focus:ring-2 focus:ring-green-100"
-                        />
+                            className="h-12 w-full rounded-lg border border-gray-300 px-4 text-gray-700 outline-none transition focus:border-green-600 focus:ring-2 focus:ring-green-100"/>
                     </div>
 
                     {/* Variety */}
@@ -71,14 +72,10 @@ const AddCrop = () => {
                         <label className="text-sm font-semibold text-gray-700">
                             Variety Name
                         </label>
-                        <input
-                            type="text"
-                            placeholder="Enter variety name"
-                            name="veriety"
+                        <input type="text" placeholder="Enter variety name" name="veriety"
                             onChange={cropD}
                             value={inputs.veriety}
-                            className="h-12 w-full rounded-lg border border-gray-300 px-4 text-gray-700 outline-none transition focus:border-green-600 focus:ring-2 focus:ring-green-100"
-                        />
+                            className="h-12 w-full rounded-lg border border-gray-300 px-4 text-gray-700 outline-none transition focus:border-green-600 focus:ring-2 focus:ring-green-100"/>
                     </div>
 
                     {/* Crop Season */}
@@ -86,14 +83,10 @@ const AddCrop = () => {
                         <label className="text-sm font-semibold text-gray-700">
                             Crop Season
                         </label>
-                        <input
-                            type="text"
-                            placeholder="Enter crop season"
-                            name="session"
+                        <input type="text" placeholder="Enter crop season" name="session"
                             onChange={cropD}
                             value={inputs.session}
-                            className="h-12 w-full rounded-lg border border-gray-300 px-4 text-gray-700 outline-none transition focus:border-green-600 focus:ring-2 focus:ring-green-100"
-                        />
+                            className="h-12 w-full rounded-lg border border-gray-300 px-4 text-gray-700 outline-none transition focus:border-green-600 focus:ring-2 focus:ring-green-100"/>
                     </div>
 
                     {/* Sowing Date */}
@@ -101,10 +94,7 @@ const AddCrop = () => {
                         <label className="text-sm font-semibold text-gray-700">
                             Sowing Date
                         </label>
-                        <input
-                            type="text"
-                            placeholder="Enter sowing date"
-                            name="showing"
+                        <input type="text" placeholder="Enter sowing date" name="showing"
                             onChange={cropD}
                             value={inputs.showing}
                             className="h-12 w-full rounded-lg border border-gray-300 px-4 text-gray-700 outline-none transition focus:border-green-600 focus:ring-2 focus:ring-green-100"

@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, redirect } from 'react-router-dom';
+import { successtoast, warningtoast } from '../util/tost';
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ const Profile = () => {
       setData(res.data.user);
       // console.log(res.data);
     } catch (error) {
-      console.log("profile error: ", error.status)
+      // console.log("profile error: ", error.status)
       if (error.status == 401)
         navigate(`/`)
 
@@ -59,7 +60,7 @@ const Profile = () => {
   const removeNotification = async(id) => {
     try {
       const response = await axios.patch(`http://localhost:3000/farmer/remove_message`, { id }, { withCredentials: true })
-      console.log('response: ', response);
+      // console.log('response: ', response);
       
     } catch (error) {
       console.log('notification is not remove: ', error)
@@ -78,13 +79,18 @@ const Profile = () => {
     try {
       const response = await axios.get(`http://localhost:3000/farmer/logout`, { withCredentials: true });
 
-      // console.log('logout res: ', response);
+      // console.log('logout res: ', response.data);
+      successtoast(response.data.data.message)
 
-      if (response.status == 200)
+      if (response.status == 200 || response.status == 401)
         navigate(`/`);
 
     } catch (error) {
-      console.log("Logout error is: ", error);
+      if(error.status == 401){
+        navigate(`/`)
+      }
+      warningtoast(error.response?.data.message)
+      // console.log("Logout error is: ", error.status);
     }
   }
 
