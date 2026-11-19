@@ -38,7 +38,7 @@ const Login = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.post(`http://localhost:3000/farmer/login`, loginInputs, { withCredentials: true })
+            const response = await axios.post(`https://farmer-manegement-systerm.onrender.com/farmer/login`, loginInputs, { withCredentials: true })
             successtoast(response.data.message)
             
             if (response.status == 200)
@@ -57,7 +57,7 @@ const Login = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.post(`http://localhost:3000/farmer/creat_user`, resisterInput)
+            const response = await axios.post(`https://farmer-manegement-systerm.onrender.com/farmer/creat_user`, resisterInput)
             successtoast(response.data.message)
 
             if (response.status == 201)

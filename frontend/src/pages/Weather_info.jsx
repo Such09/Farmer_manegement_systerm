@@ -22,7 +22,7 @@ const Weather_info = () => {
         e.preventDefault();
 
         try {
-            const res = await axios.get(`http://localhost:3000/farmer/weather_info`, { params: { city: city } })
+            const res = await axios.get(`https://farmer-manegement-systerm.onrender.com/farmer/weather_info`, { params: { city: city } })
             // console.log("res: ", res.data.data);
             setInfo(res.data.data)
             setIsTrue(true)

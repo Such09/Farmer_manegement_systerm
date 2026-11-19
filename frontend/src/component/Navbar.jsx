@@ -14,7 +14,7 @@ const Navbar = () => {
         e.preventDefault();
 
         try {            
-            const res = await axios.get(`http://localhost:3000/farmer/cropinfo`, { params: {name: input} })
+            const res = await axios.get(`https://farmer-manegement-systerm.onrender.com/farmer/cropinfo`, { params: {name: input} })
             // console.log("res: ", res.data.data);
 
             if (res.status == 200)

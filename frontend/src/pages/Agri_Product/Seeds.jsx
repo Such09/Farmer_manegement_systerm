@@ -7,7 +7,7 @@ const Seeds = () => {
   // fetch data
   const getData = async () => {
     try {
-      const res = await axios.get(`http://localhost:3000/farmer/seed`)
+      const res = await axios.get(`https://farmer-manegement-systerm.onrender.com/farmer/seed`)
 
       setSeedData(res.data.data)
 

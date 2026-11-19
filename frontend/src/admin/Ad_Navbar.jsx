@@ -12,7 +12,7 @@ const Ad_Navbar = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.get(`http://localhost:3000/farmer/farmer_data`, {params: {name: input}})
+            const response = await axios.get(`https://farmer-manegement-systerm.onrender.com/farmer/farmer_data`, {params: {name: input}})
 
             // navigate or carry information
             navigate(`/admin_app/farmers`, {state: response.data.farmer});

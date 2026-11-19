@@ -20,7 +20,7 @@ const AddCrop = () => {
     const addCrop = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.patch(`http://localhost:3000/farmer/addcrop`, inputs, { withCredentials: true })
+            const res = await axios.patch(`https://farmer-manegement-systerm.onrender.com/farmer/addcrop`, inputs, { withCredentials: true })
             // console.log("res: ", res.data);
             if(res.status == 200)
                 navigate('/app/crop')

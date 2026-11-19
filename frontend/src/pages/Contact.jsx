@@ -17,7 +17,7 @@ const Contact = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post(`http://localhost:3000/farmer/contact`, inputs)
+      const res = await axios.post(`https://farmer-manegement-systerm.onrender.com/farmer/contact`, inputs)
       console.log("res: ", res);
 
     } catch (error) {

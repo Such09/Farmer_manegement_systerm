@@ -30,7 +30,7 @@ const UpdateCropRecord = () => {
         e.preventDefault();
 
         try {
-            const res = await axios.patch(`http://localhost:3000/farmer/update_record`, inputs, { withCredentials: true })
+            const res = await axios.patch(`https://farmer-manegement-systerm.onrender.com/farmer/update_record`, inputs, { withCredentials: true })
             successtoast(res.data.message)
             navigate(`/app/crop`)
             

@@ -10,7 +10,7 @@ const Crop_mandi_price = () => {
     const formHandler = async (e) => {
         e.preventDefault()
         try {
-            const response = await axios.get(`http://localhost:3000/farmer/crop_price`, { params: { commodity: input } })
+            const response = await axios.get(`https://farmer-manegement-systerm.onrender.com/farmer/crop_price`, { params: { commodity: input } })
             setData(response.data.data)
             setIsFetch(true)
             // console.log("res: ", response.data.data);
