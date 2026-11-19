@@ -8,7 +8,8 @@ const app = express();
 
 app.use(cors({
     // origin: process.env.FRONTEND_URL,  
-    origin: `https://agriconnect-g3e86esfw-such09s-projects.vercel.app`,  
+    // origin: `https://agriconnect-g3e86esfw-such09s-projects.vercel.app`, 
+    origin: `https://grand-crumble-e52dd9.netlify.app`,
     credentials: true
 }));
 
