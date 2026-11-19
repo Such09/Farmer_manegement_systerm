@@ -7,8 +7,8 @@ import cookieParser from 'cookie-parser';
 const app = express();
 
 app.use(cors({
-    // origin: "http://localhost:5173",
-    origin: process.env.FRONTEND_URL,    
+    // origin: process.env.FRONTEND_URL,  
+    origin: `https://vercel.com/such09s-projects/agriconnect/6CpPLz23wEW17MwPTsUR8Xq3t6Uw`,  
     credentials: true
 }));
 
