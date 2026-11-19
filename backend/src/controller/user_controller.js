@@ -60,15 +60,15 @@ export const loginUser = async (req, res) => {
         // Set cookies on Brower
         res.cookie("accessToken", accessToken, {
             httpOnly: true,
-            secure: false,      // false ? access HTTP & HTTPS : only HTTPS
-            sameSite: 'lax',
+            secure: true,      // false ? access HTTP & HTTPS : only HTTPS
+            sameSite: 'none',
             maxAge: 60 * 60 * 1000
         })
 
         res.cookie("refreshToken", refreshToken, {
             httpOnly: true,
-            secure: false,
-            sameSite: 'lax',
+            secure: true,
+            sameSite: 'none',
             maxAge: 24 * 60 * 60 * 1000
         })
 
@@ -121,14 +121,14 @@ export const logoutUser = async (req, res) => {
         // Remove cookies from Broser
         res.clearCookie("accessToken", {
             httpOnly: true,
-            secure: false,
-            sameSite: "lax"
+            secure: true,
+            sameSite: "none"
         });
 
         res.clearCookie("refreshToken", {
             httpOnly: true,
-            secure: false,
-            sameSite: "lax"
+            secure: true,
+            sameSite: "none"
         });
 
         return res.status(200).json({
