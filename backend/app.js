@@ -8,7 +8,7 @@ const app = express();
 
 app.use(cors({
     // origin: process.env.FRONTEND_URL,  
-    origin: `https://agriconnect-git-main-such09s-projects.vercel.app/`,  
+    origin: `https://agriconnect-git-main-such09s-projects.vercel.app`,  
     credentials: true
 }));
 
