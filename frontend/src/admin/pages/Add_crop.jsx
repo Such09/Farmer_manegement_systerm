@@ -30,7 +30,7 @@ const Add_crop = () => {
         formData.append("land", inputs.land);
 
         try {
-            const res = await axios.post(`http://localhost:3000/farmer/add_crop`, formData);
+            const res = await axios.post(`https://farmer-manegement-systerm.onrender.com/farmer/add_crop`, formData);
             console.log("res: ", res);
 
         } catch (error) {

@@ -20,7 +20,7 @@ const ResponceToMessage = () => {
         e.preventDefault();
 
         try {
-            const res = await axios.post(`http://localhost:3000/farmer/sent_replay`, inputs)
+            const res = await axios.post(`https://farmer-manegement-systerm.onrender.com/farmer/sent_replay`, inputs)
             console.log('res: ', res);
 
         } catch (error) {
@@ -88,7 +88,6 @@ const ResponceToMessage = () => {
             </form>
 
         </div>
-
     )
 }
 

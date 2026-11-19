@@ -25,7 +25,7 @@ const Add_fertilizer = () => {
         formData.append("info", inputs.info);
 
         try {
-            const res = await axios.post(`http://localhost:3000/farmer/add_fertilizer`, formData);
+            const res = await axios.post(`https://farmer-manegement-systerm.onrender.com/farmer/add_fertilizer`, formData);
 
             console.log("res: ", res);
         } catch (error) {

@@ -11,7 +11,7 @@ const Massages = () => {
 
     const getData = async () => {
         try {
-            const res = await axios.get(`http://localhost:3000/farmer/messages`)
+            const res = await axios.get(`https://farmer-manegement-systerm.onrender.com/farmer/messages`)
 
             setInfo(res.data.data)
             setIsLoading(false)
@@ -89,7 +89,6 @@ const Massages = () => {
             </div>
 
         </div>
-
     )
 }
 

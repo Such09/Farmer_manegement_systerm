@@ -25,7 +25,7 @@ const Add_seeds = () => {
         formData.append("info", inputs.info);
 
         try {
-            const res = await axios.post(`http://localhost:3000/farmer/add_seed`, formData);
+            const res = await axios.post(`https://farmer-manegement-systerm.onrender.com/farmer/add_seed`, formData);
 
             console.log("res: ", res);
         } catch (error) {
@@ -39,10 +39,8 @@ const Add_seeds = () => {
     return (
         <div className="min-h-screen w-full flex items-center justify-center bg-green-50 px-4 py-8">
 
-            <form
-                onSubmit={fromHandler}
-                className="w-full max-w-xl flex flex-col gap-5 rounded-2xl border border-green-100 bg-white p-6 shadow-lg sm:p-8"
-            >
+            <form onSubmit={fromHandler}
+                className="w-full max-w-xl flex flex-col gap-5 rounded-2xl border border-green-100 bg-white p-6 shadow-lg sm:p-8">
                 {/* Header */}
                 <div className="mb-2 text-center">
                     <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-green-100 text-3xl">

@@ -6,23 +6,7 @@ const Farmer = () => {
   const farmerData = location.state
 
   return (
-    // <div className='h-screen w-full flex justify-center bg-zinc-100'>
-    //   <div className='w-2/3 flex py-4 px-6 flex-col gap-3 bg-white'>
-    //     <h1 className='text-xl font-medium'>Farmers</h1>
-
-    //     {
-    //       farmerData.map((farm) => (
-    //         <div key={farm._id} className='w-2/3 py-4 px-2 felx flex-col gap-2 border rounded-xl bg-amber-50'>
-    //           <p>ID: { farm._id }</p>
-    //           <p>Name: { farm.name }</p>
-    //         </div>
-    //       ))
-    //     }
-    //   </div>
-    // </div>
-
     <div className="min-h-screen w-full bg-linear-to-br from-green-50 via-white to-emerald-100 px-4 py-10">
-
       <div className="mx-auto w-full max-w-4xl rounded-2xl border border-green-100 bg-white p-6 shadow-lg sm:p-8">
 
         {/* Header */}
