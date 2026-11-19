@@ -366,7 +366,7 @@ const Profile = () => {
               {/* Notification List */}
               <div className="h-96 overflow-y-scroll hide-scrollbar flex flex-col gap-4">
 
-                {notificationInfo?.length > 0 ? (
+                {(notificationInfo?.length ?? 0) > 0 ? (
                   notificationInfo.map((item) => (
                     <div key={item._id}
                       className="flex gap-4 rounded-xl border border-green-100 bg-white p-4 sm:p-5 shadow-sm 
