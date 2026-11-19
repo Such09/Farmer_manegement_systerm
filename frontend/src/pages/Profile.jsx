@@ -170,25 +170,21 @@ const Profile = () => {
             </button>
 
             {/* My crops */}
-            <button
-              onClick={crop}
+            <button onClick={crop}
               className={`flex w-full items-center gap-3 rounded-lg px-4 py-3 text-left font-medium transition ${isCrop
                 ? "bg-green-700 text-white shadow-sm"
                 : "text-gray-600 hover:bg-green-50 hover:text-green-800"
-                }`}
-            >
+                }`}>
               <span>🌾</span>
               My Crops
             </button>
 
             {/* Notification */}
-            <button
-              onClick={notification}
+            <button onClick={notification}
               className={`flex w-full items-center gap-3 rounded-lg px-4 py-3 text-left font-medium transition ${isNoti
                 ? "bg-green-700 text-white shadow-sm"
                 : "text-gray-600 hover:bg-green-50 hover:text-green-800"
-                }`}
-            >
+                }`}>
               <span>🔔</span>
               Notification
             </button>
@@ -196,10 +192,8 @@ const Profile = () => {
             <div className="my-2 border-t border-gray-100"></div>
 
             {/* Logout */}
-            <button
-              onClick={() => logout()}
-              className="flex w-full items-center gap-3 rounded-lg px-4 py-3 text-left font-medium text-red-600 transition hover:bg-red-50"
-            >
+            <button onClick={() => logout()}
+              className="flex w-full items-center gap-3 rounded-lg px-4 py-3 text-left font-medium text-red-600 transition hover:bg-red-50">
               <span>↪</span>
               Logout
             </button>
@@ -372,7 +366,7 @@ const Profile = () => {
               {/* Notification List */}
               <div className="h-96 overflow-y-scroll hide-scrollbar flex flex-col gap-4">
 
-                {notificationInfo.length > 0 ? (
+                {notificationInfo?.length > 0 ? (
                   notificationInfo.map((item) => (
                     <div key={item._id}
                       className="flex gap-4 rounded-xl border border-green-100 bg-white p-4 sm:p-5 shadow-sm 
