@@ -7,7 +7,7 @@ const Fertilizers = () => {
   // fetch data
   const getData = async () => {
     try {
-      const res = await axios.get(`https://farmer-manegement-systerm.onrender.com/farmer/fertilizer`)
+      const res = await axios.get(`https://farmermanegementsysterm-production.up.railway.app/farmer/fertilizer`)
 
       setFertilizerData(res.data.data)
 

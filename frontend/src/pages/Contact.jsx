@@ -17,7 +17,7 @@ const Contact = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post(`farmermanegementsysterm-production.up.railway.app/farmer/contact`, inputs)
+      const res = await axios.post(`https://farmermanegementsysterm-production.up.railway.app/farmer/contact`, inputs)
       console.log("res: ", res);
 
     } catch (error) {

@@ -15,7 +15,7 @@ const ScanCrop = () => {
             const formData = new FormData()
             formData.append("crop", crop)
 
-            const res = await axios.post(`farmermanegementsysterm-production.up.railway.app/farmer/scan`, formData)
+            const res = await axios.post(`https://farmermanegementsysterm-production.up.railway.app/farmer/scan`, formData)
             // console.log("res: ", res);
             
             setResult(res.data.result)
