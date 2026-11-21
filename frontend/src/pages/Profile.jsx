@@ -44,7 +44,7 @@ const Profile = () => {
   // notification data
   const notificationData = async () => {
     try {
-      const res = await axios.get(`https://farmermanegementsysterm-production.up.railway.app/notification_data`, { withCredentials: true })
+      const res = await axios.get(`https://farmermanegementsysterm-production.up.railway.app/farmer/notification_data`, { withCredentials: true })
       setNotificationInfo(res.data.data);
       // console.log('res: ', res.data.data);
 
@@ -59,7 +59,7 @@ const Profile = () => {
   // remove notification
   const removeNotification = async(id) => {
     try {
-      const response = await axios.patch(`https://farmermanegementsysterm-production.up.railway.app/remove_message`, { id }, { withCredentials: true })
+      const response = await axios.patch(`https://farmermanegementsysterm-production.up.railway.app/farmer/remove_message`, { id }, { withCredentials: true })
       // console.log('response: ', response);
       
     } catch (error) {
