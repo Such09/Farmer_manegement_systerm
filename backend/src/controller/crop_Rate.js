@@ -14,7 +14,6 @@ export const cropRates = async (req, res) => {
                     format: "json",
                     limit: 1,
                     offset: 0,
-                    // "filters[state.keyword]": "Karnataka",
                     ...(commodity && {
                         "filters[commodity]": commodity,
                     }),
@@ -22,11 +21,16 @@ export const cropRates = async (req, res) => {
             }
         );
 
+        console.log('hello: ', today_price);
+
         return res.status(200).json({
             message: "mandi price data get sucessfuly",
             data: today_price.data.records
         })
     } catch (error) {
+        console.log("API ERROR:", error.message);
+        console.log("API STATUS:", error.response?.status);
+        console.log("API RESPONSE:", error.response?.data);
         return res.status(500).json({
             message: "Internal server error"
         })
