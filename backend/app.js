@@ -6,10 +6,13 @@ import cookieParser from 'cookie-parser';
 // dotenv.config();
 const app = express();
 
+const allowedOrigins = [
+    `https://agriconnectweb-phi.vercel.app/`,
+    `https://farmer-manegement-systerm.netlify.app`,
+]
+
 app.use(cors({
-    // origin: process.env.FRONTEND_URL,   
-    origin: `https://agriconnectweb-phi.vercel.app/`,
-    origin: `https://farmer-manegement-systerm.netlify.app`,
+    origin: allowedOrigins,
     credentials: true
 }));
 
