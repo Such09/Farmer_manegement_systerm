@@ -1,3 +1,4 @@
+import axios from "axios";
 import { Router } from "express";
 import { creatUser, loginUser, logoutUser } from "../controller/user_controller.js";
 import { isValidUser } from "../middleware/isValidUser.js";
