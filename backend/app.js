@@ -7,7 +7,7 @@ import cookieParser from 'cookie-parser';
 const app = express();
 
 const allowedOrigins = [
-    `https://agriconnectweb-phi.vercel.app/`,
+    `https://agriconnectweb-phi.vercel.app`,
     `https://farmer-manegement-systerm.netlify.app`,
 ]
 
