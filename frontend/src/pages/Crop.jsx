@@ -10,7 +10,7 @@ const Crop = () => {
     // fetch farmer crop recored
     const getData = async () => {
         try {
-            const res = await axios.get(`https://farmer-manegement-systerm.onrender.com/farmer/crops`, { withCredentials: true })
+            const res = await axios.get(`farmermanegementsysterm-production.up.railway.app/farmer/crops`, { withCredentials: true })
             setCropInfo(res.data.data);
 
         } catch (error) {

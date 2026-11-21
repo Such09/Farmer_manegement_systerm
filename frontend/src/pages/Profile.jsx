@@ -16,7 +16,7 @@ const Profile = () => {
   // profile
   const profile = async () => {
     try {
-      const res = await axios.get(`https://farmer-manegement-systerm.onrender.com/farmer/profile`, { withCredentials: true })
+      const res = await axios.get(`farmermanegementsysterm-production.up.railway.app/farmer/profile`, { withCredentials: true })
       setData(res.data.user);
       // console.log(res.data);
     } catch (error) {
@@ -30,7 +30,7 @@ const Profile = () => {
   // Crop information
   const getData = async () => {
     try {
-      const res = await axios.get(`https://farmer-manegement-systerm.onrender.com/farmer/crops`, { withCredentials: true })
+      const res = await axios.get(`farmermanegementsysterm-production.up.railway.app/farmer/crops`, { withCredentials: true })
       setCropInfo(res.data.data);
 
     } catch (error) {
@@ -44,7 +44,7 @@ const Profile = () => {
   // notification data
   const notificationData = async () => {
     try {
-      const res = await axios.get(`https://farmer-manegement-systerm.onrender.com/notification_data`, { withCredentials: true })
+      const res = await axios.get(`farmermanegementsysterm-production.up.railway.app/notification_data`, { withCredentials: true })
       setNotificationInfo(res.data.data);
       // console.log('res: ', res.data.data);
 
@@ -59,7 +59,7 @@ const Profile = () => {
   // remove notification
   const removeNotification = async(id) => {
     try {
-      const response = await axios.patch(`https://farmer-manegement-systerm.onrender.com/remove_message`, { id }, { withCredentials: true })
+      const response = await axios.patch(`farmermanegementsysterm-production.up.railway.app/remove_message`, { id }, { withCredentials: true })
       // console.log('response: ', response);
       
     } catch (error) {
@@ -77,7 +77,7 @@ const Profile = () => {
   // Logout a User
   const logout = async () => {
     try {
-      const response = await axios.get(`https://farmer-manegement-systerm.onrender.com/farmer/logout`, { withCredentials: true });
+      const response = await axios.get(`farmermanegementsysterm-production.up.railway.app/farmer/logout`, { withCredentials: true });
 
       // console.log('logout res: ', response.data);
       successtoast(response.data.data.message)
