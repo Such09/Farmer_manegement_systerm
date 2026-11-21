@@ -38,11 +38,8 @@ const ScanCrop = () => {
                     {/* Logo */}
                     <div className="flex flex-col items-center text-center">
                         <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-green-50 p-3">
-                            <img
-                                src={logo}
-                                alt="Crop Health Scanner"
-                                className="h-full w-full object-contain"
-                            />
+                            <img src={logo} alt="Crop Health Scanner"
+                                className="h-full w-full object-contain"/>
                         </div>
 
                         <h1 className="mt-5 text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">
@@ -55,10 +52,8 @@ const ScanCrop = () => {
                     </div>
 
                     {/* Upload Form */}
-                    <form
-                        onSubmit={cropFormHandler}
-                        className="mt-8 flex flex-col gap-5"
-                    >
+                    <form onSubmit={cropFormHandler}
+                        className="mt-8 flex flex-col gap-5">
                         <label className="text-sm font-bold text-gray-800">
                             Upload Crop Photo
                         </label>
@@ -76,13 +71,10 @@ const ScanCrop = () => {
                                 Use a clear, well-lit photo for better analysis.
                             </p>
 
-                            <input
-                                type="file"
-                                name="crop"
-                                accept="image/*"
+                            <input type="file" name="crop" accept="image/*"
                                 onChange={(e) => setCrop(e.target.files[0])}
-                                className="mx-auto mt-5 block w-full max-w-sm cursor-pointer rounded-lg border border-gray-200 bg-white text-sm text-gray-600 file:mr-3 file:cursor-pointer file:border-0 file:bg-green-700 file:px-4 file:py-3 file:font-semibold file:text-white hover:file:bg-green-800"
-                            />
+                                className="mx-auto mt-5 block w-full max-w-sm cursor-pointer rounded-lg border border-gray-200 bg-white text-sm text-gray-600 file:mr-3 file:cursor-pointer
+                                file:border-0 file:bg-green-700 file:px-4 file:py-3 file:font-semibold file:text-white hover:file:bg-green-800"/>
                         </div>
 
                         {/* Photo Tips */}

@@ -3,6 +3,9 @@ import axios from "axios"
 export const cropRates = async (req, res) => {
     try {
         const { commodity } = req.query;
+        console.log("Commodity:", commodity);
+        console.log("Resource ID:", process.env.RESORCE_ID);
+        console.log("API Key available:", !!process.env.DATA_GOV_KEY);
 
         const today_price = await axios.get(`https://api.data.gov.in/resource/${process.env.RESORCE_ID}`,
             {
@@ -18,7 +21,7 @@ export const cropRates = async (req, res) => {
                 },
             }
         );
-        
+
         return res.status(200).json({
             message: "mandi price data get sucessfuly",
             data: today_price.data.records
