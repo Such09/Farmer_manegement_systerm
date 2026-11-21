@@ -1,4 +1,3 @@
-import axios from "axios";
 import { Router } from "express";
 import { creatUser, loginUser, logoutUser } from "../controller/user_controller.js";
 import { isValidUser } from "../middleware/isValidUser.js";
@@ -94,25 +93,5 @@ router.get(`/farmer_data`, farmersData);
 
 // Get farmer queries - messages
 router.get('/messages', messages);
-
-router.get("/test-api", async (req, res) => {
-    try {
-        const response = await axios.get(
-            "https://api.data.gov.in/",
-            { timeout: 15000 }
-        );
-
-        res.json({
-            status: response.status,
-            message: "Connected"
-        });
-
-    } catch (error) {
-        res.status(500).json({
-            code: error.code,
-            message: error.message
-        });
-    }
-});
 
 export { router }

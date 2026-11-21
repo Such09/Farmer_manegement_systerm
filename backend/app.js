@@ -8,7 +8,7 @@ const app = express();
 
 app.use(cors({
     // origin: process.env.FRONTEND_URL,   
-    // origin: `https://grand-crumble-e52dd9.netlify.app`,
+    origin: `https://agriconnectweb-phi.vercel.app/`,
     origin: `https://farmer-manegement-systerm.netlify.app`,
     credentials: true
 }));
