@@ -24,7 +24,7 @@ const Crop = () => {
     // Remove Crop record
     const removeRecord = async (id) => {
         try {
-            const res = await axios.patch(`https://farmer-manegement-systerm.onrender.com/farmer/rm_record/${id}`, {}, { withCredentials: true })
+            const res = await axios.patch(`https://farmermanegementsysterm-production.up.railway.app/farmer/rm_record/${id}`, {}, { withCredentials: true })
             // console.log("response: ", res.data.message);
             successtoast(res.data.message)
 
@@ -36,7 +36,7 @@ const Crop = () => {
     // Update Crop record
     const updateRecord = async (id) => {
         try {
-            const res = await axios.get(`https://farmer-manegement-systerm.onrender.com/farmer/user_crop/${id}`)
+            const res = await axios.get(`https://farmermanegementsysterm-production.up.railway.app/farmer/user_crop/${id}`)
             // console.log("response: ", res.data.data);
 
             // pass data to add_crop page
